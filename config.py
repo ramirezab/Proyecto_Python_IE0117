@@ -3,9 +3,11 @@ from Mapas_pruebas import mapeo
 
 from PIL import Image
 
-level_map_1 = mapeo('laberinto.jpg')
+level_map_1 = mapeo('laberinto2.jpg')
 
-tile_size = 5
+for i in level_map_1:
+    print(i)
 
-screen_width = 1200
-scree_height = 700
+
+
+

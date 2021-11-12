@@ -12,16 +12,17 @@ def mapeo(image):
     """
 
     im = Image.open(image)
-    im2 = im.resize((screen_size.current_h,screen_size.current_h))
-
+    
+    im2 = im.resize((screen_size.current_h-150,screen_size.current_h-150))
+    
     pix = im2.load()
     mapa=[]
-
-    for row in range(im2.size[0]):
+    x = 5
+    for row in range(0,im2.size[0],5):
         a=[]
-        for column in range(im2.size[1]):
+        for column in range(0,im2.size[1],5):
             
-            if pix[row, column] == (0,0,0):
+            if pix[row, column][0] in range(x) and pix[row, column][1] in range(x) and pix[row, column][2] in range(x):
                 
                 a.append("b")
             else:
