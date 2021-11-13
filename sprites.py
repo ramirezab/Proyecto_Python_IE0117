@@ -16,7 +16,7 @@ class wall(pygame.sprite.Sprite):
 class ply(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
-        self.image = pygame.Surface((20,20))
+        self.image = pygame.Surface((30,50))
         self.image.fill('white')
         self.rect = self.image.get_rect(topleft = pos)
         
