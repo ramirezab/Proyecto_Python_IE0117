@@ -28,8 +28,8 @@ class level:
             for col_index, cell in enumerate(row):
 
                 if cell == "b":
-                    x = row_index*(im.size[0])-((display_info.current_h-150)//2)
-                    y = col_index*(im.size[1])-((display_info.current_h-150)//2)
+                    x = row_index*im.size[0]-((display_info.current_h-150)//2)
+                    y = col_index*im.size[1]-((display_info.current_h-150)//2)
                     tile = wall((x,y), wall_type)
                     self.walls.add(tile)
         
