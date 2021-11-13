@@ -2,9 +2,9 @@ import pygame
 pygame.init()
 
 class wall(pygame.sprite.Sprite):
-    def __init__(self, pos):
+    def __init__(self, pos, sprite):
         super().__init__()
-        self.image = pygame.image.load("sprites\wall_1_front.png").convert()
+        self.image = pygame.image.load(sprite).convert()
         
         self.rect = self.image.get_rect(topleft = pos)
     
@@ -22,7 +22,3 @@ class ply(pygame.sprite.Sprite):
         
 
 
-    def update(self):
-        self.get_input()
-        self.rect.x += self.direction.x
-        self.rect.y += self.direction.y
