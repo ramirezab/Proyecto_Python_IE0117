@@ -17,7 +17,7 @@ def mapeo(image):
     
     pix = im2.load()
     mapa=[]
-    x = 5
+    x = 20
     for row in range(0,im2.size[0],5):
         a=[]
         for column in range(0,im2.size[1],5):
