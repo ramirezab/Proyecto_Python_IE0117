@@ -8,40 +8,43 @@ from PIL import Image
 pygame.init()
 display_info = pygame.display.Info()
 
+#Clase nivel
 class level:
     def __init__(self, nivel, surface, wall_type):
         self.diplay_surface = surface
-        self.set_walls(nivel, wall_type)
+        self.set_walls(nivel, wall_type)    # Se llaman surface y wall_type como los argumentos de entrada de set_walls
         self.set_player()
 
         self.world_x_shift = 0
         self.world_y_shift = 0
         
-
+    # Se Itera una lista y se colocan sprites en el mapa según la posicion
+    # de los caracteres encontrados
     def set_walls(self, layout, wall_type):
         im = Image.open(wall_type)
         
-        
-
         self.walls = pygame.sprite.Group()
         for row_index, row in enumerate(layout):
             for col_index, cell in enumerate(row):
 
-                if cell == "b":
+                if cell == "b": # Deteccion de ixeles negros
                     x = row_index*im.size[0]-((display_info.current_h-150)//2)
                     y = col_index*im.size[1]-((display_info.current_h-150)//2)
                     tile = wall((x,y), wall_type)
                     self.walls.add(tile)
-        
 
+                
+        
+    # Posicion del jugador e la pantalla
     def set_player(self):
 
 
-        self.player = ply(((display_info.current_h-150)//2, (display_info.current_h)//2-150))
+        self.player = ply(((800)//2, (600)//2))
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.player)
         self.player.speed=0
 
+    # Movimiento del mundo y sonido
     def scroll_world(self):
 
         keys = pygame.key.get_pressed()
@@ -96,15 +99,7 @@ class level:
             self.world_x_shift=0
             self.world_y_shift=0
         
-        
-        
-        
-
-        
-
-
-
-
+    # Activacion de todas las funciones de esta clase
     def run(self):
         
         self.walls.update(self.world_x_shift, self.world_y_shift)
