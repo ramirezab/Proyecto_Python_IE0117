@@ -30,10 +30,19 @@ def mapeo(image):
             if pix[row, column][0] in range(x) and pix[row, column][1] in range(x) and pix[row, column][2] in range(x):
                 
                 a.append("b")
+
+            elif pix[row, column][0] in range(x) and pix[row, column][1] in range(255-x,255,1) and pix[row, column][2] in range(x):
+                a.append("g")
+
+            elif pix[row, column][0] in range(255-x,255,1) and pix[row, column][1] in range(x) and pix[row, column][2] in range(x):
+                a.append("r")
+
+            elif pix[row, column][0] in range(x) and pix[row, column][1] in range(x) and pix[row, column][2] in range(255-x,255,1):
+                a.append("a")
             else:
                 a.append(" ")
             
-        
+    
             
         b = "".join(a) # Definicion de str ue contiene 1 fila de pixeles de la imagen
         mapa.append(b) 

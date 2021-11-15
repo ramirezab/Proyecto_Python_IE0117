@@ -11,4 +11,3 @@ level_map_3 = mapeo('laberinto3.jpg')
 
 
 
-

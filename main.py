@@ -4,8 +4,9 @@ from pygame.constants import FULLSCREEN
 from config import *
 from niveles import level
 
-pygame.init()
 
+pygame.init()
+pygame.font.init()
 # Detecta la informacion de la pantalla
 display_info = pygame.display.Info()
 screen_width = display_info.current_w
@@ -21,6 +22,8 @@ level_1 = level(level_map_1, screen, "sprites\wall_1_front.png")
 level_2 = level(level_map_2, screen, "sprites\wall_2_front.png")
 level_3 = level(level_map_3, screen, "sprites\wall_3_front.png")
 
+
+
 #Bucle principal del juego
 while True:
     for event in pygame.event.get():
@@ -29,16 +32,18 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 sys.exit()
-                
 
-            
         if event.type == pygame.QUIT:
             sys.exit()
-            
-                
-    
-    screen.fill('grey')
+
+    screen.fill('grey') 
     level_2.run()
-   
+    print(level_2.puntaje())
+
+
+
+
+
+    clock.tick(8192)
     pygame.display.flip()
     
