@@ -15,6 +15,7 @@ class level:
         self.diplay_surface = surface
         self.set_walls(nivel, wall_type)    # Se llaman surface y wall_type como los argumentos de entrada de set_walls
         self.set_player()
+        self.pasos = pygame.mixer.Sound("Pruebas de musica/Pasos en arena.mp3")
 
         self.score = 0
         self.world_x_shift = 0
@@ -86,7 +87,7 @@ class level:
 
         # Controles del jugador van aqui
         if self.keys[pygame.K_a] :
-
+            self.pasos.play()
             if self.player.rect.x < 360:
                 self.player.speed =0
                 self.world_x_shift=1
@@ -98,8 +99,7 @@ class level:
                     self.player.rect.x -= 3
             return
         elif self.keys[pygame.K_d] :
-
-
+            self.pasos.play()
             if self.player.rect.x > 440:
                 self.player.speed =0
                 self.world_x_shift=-1
@@ -112,7 +112,7 @@ class level:
 
             return
         elif self.keys[pygame.K_w] :
-
+            self.pasos.play()
             if self.player.rect.y < 260:
                 self.player.speed =0
                 self.world_y_shift=1
@@ -125,7 +125,7 @@ class level:
 
             return
         elif self.keys[pygame.K_s]:
-
+            self.pasos.play()
             if self.player.rect.y > 340:
                 self.player.speed =0
                 self.world_y_shift=-1
