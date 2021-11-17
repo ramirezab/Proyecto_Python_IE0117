@@ -88,7 +88,7 @@ class level:
 
 
         # Controles del jugador van aqui
-        if self.keys[pygame.K_a] :
+        if self.keys[pygame.K_a] and not self.keys[pygame.K_d] and not self.keys[pygame.K_w] and not self.keys[pygame.K_s]:
             if self.player.rect.x < 400:
                 self.player.speed =0
                 self.world_x_shift=1
@@ -99,7 +99,7 @@ class level:
                 if self.keys[pygame.K_LSHIFT]:
                     self.player.rect.x -= 3
             return
-        elif self.keys[pygame.K_d] :
+        elif self.keys[pygame.K_d] and not self.keys[pygame.K_a] and not self.keys[pygame.K_w] and not self.keys[pygame.K_s]:
             if self.player.rect.x > 400:
                 self.player.speed =0
                 self.world_x_shift=-1
@@ -111,7 +111,7 @@ class level:
                     self.player.rect.x += 3
 
             return
-        elif self.keys[pygame.K_w] :
+        elif self.keys[pygame.K_w] and not self.keys[pygame.K_a] and not self.keys[pygame.K_d] and not self.keys[pygame.K_s]:
             if self.player.rect.y < 300:
                 self.player.speed =0
                 self.world_y_shift=1
@@ -123,7 +123,7 @@ class level:
                     self.player.rect.y -= 3
 
             return
-        elif self.keys[pygame.K_s]:
+        elif self.keys[pygame.K_s] and not self.keys[pygame.K_a] and not self.keys[pygame.K_d] and not self.keys[pygame.K_w]:
             if self.player.rect.y > 300:
                 self.player.speed =0
                 self.world_y_shift=-1
