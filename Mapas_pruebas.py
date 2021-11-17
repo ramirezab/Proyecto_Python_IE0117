@@ -15,7 +15,7 @@ def mapeo(image):
 
     # Cambia el tamaño de la imagen para que se ajuste a la
     # pantalla del juego
-    im2 = im.resize((screen_size.current_h-150,screen_size.current_h-150))
+    im2 = im.resize((800,600))
 
     # Crea una lista con todos los pixeles en RGB de a imagen
     pix = im2.load()
@@ -36,7 +36,7 @@ def mapeo(image):
             elif pix[row, column][0] in range(255-x,255,1) and pix[row, column][1] in range(x) and pix[row, column][2] in range(x):
                 a.append("r")
 
-            elif pix[row, column][0] in range(x) and pix[row, column][1] in range(x) and pix[row, column][2] in range(255-x,255,1):
+            elif pix[row, column][0] in range(x) and pix[row, column][1] in range(x) and pix[row, column][2] in range(0,255,1):
                 a.append("a")
             else:
                 a.append(" ")

@@ -46,36 +46,36 @@ Pasos = pygame.mixer.Sound(pasos)
 
 # Muestra FPS
 class FPS:
-    def __init__ (self):
+    def __init__ (self, puntaje):
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("Comic Sans MS", 20)
-        self.text = self.font.render(str(level_2.puntaje()), True, (0,0,0))
+        self.text = self.font.render(str(puntaje), True, (0,0,0))
         screen.blit(self.text, (10,10))
-    def render(self, screen):
-        self.text = self.font.render(str(level_2.puntaje()), True, (0,0,0))
+    def render(self, screen, puntaje):
+        self.text = self.font.render(str(puntaje), True, (0,0,0))
         screen.blit(self.text, (10,10))
-fps = FPS()
+fps = FPS(level_1.puntaje())
 
 # Bucle principal del juego
 while True:
     for event in pygame.event.get():
         # Inicio del modulo de sonido 1
         if event.type == pygame.KEYDOWN:
-            Pasos.play(-1)
-            # if (event.key == pygame.K_LEFT or event.key == pygame.K_a):
-            #     Pasos.play(-1)
-            # elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d):
-            #     Pasos.play(-1)
-            # elif (event.key == pygame.K_DOWN or event.key == pygame.K_s):
-            #     Pasos.play(-1)
-            # elif (event.key == pygame.K_UP or event.key == pygame.K_w):
-            #     Pasos.play(-1)
+            
+            if (event.key == pygame.K_LEFT or event.key == pygame.K_a):
+                Pasos.play(-1)
+            elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d):
+                Pasos.play(-1)
+            elif (event.key == pygame.K_DOWN or event.key == pygame.K_s):
+                Pasos.play(-1)
+            elif (event.key == pygame.K_UP or event.key == pygame.K_w):
+                Pasos.play(-1)
                 # Con este modulo si se apreta m se pausa la musica
                 # Con n se reanuda donde se dejo pausada
-            # elif (event.key == pygame.K_m):
-            #     pygame.mixer.music.pause()
-            # elif (event.key == pygame.K_n):
-            #     pygame.mixer.music.unpause()
+            elif (event.key == pygame.K_m):
+                pygame.mixer.music.pause()
+            elif (event.key == pygame.K_n):
+                pygame.mixer.music.unpause()
         # Fin del modulo de sonido
 
         # Con este comando si apretas ESC el juego se cerrará
@@ -99,7 +99,9 @@ while True:
             sys.exit()
 
     screen.fill('grey')
-    fps.render(screen)
-    level_2.run()
+    
+    level_1.run()
+    fps.render(screen, level_1.puntaje())
+    
     fps.clock.tick(60)
     pygame.display.flip()

@@ -1,7 +1,7 @@
 
 import pygame
 from pygame import sprite
-
+import time
 from sprites import *
 from config import *
 from Mapas_pruebas import *
@@ -41,7 +41,7 @@ class level:
                     tile = wall((x,y), wall_type)
                     self.walls.add(tile)
 
-                elif cell == "g": # Deteccion de pixeles negros
+                elif cell == "g": # Deteccion de pixeles verdes
                     j = row_index*self.im.size[0]-(400)
                     k = col_index*self.im.size[1]-(300)
                     item = items((j, k))
@@ -57,7 +57,7 @@ class level:
                     else:
                         pass
 
-                elif cell == "a": # Deteccion de pixeles negros
+                elif cell == "a": # Deteccion de pixeles azues
                     j = (row_index)*self.im.size[0]-(400)
                     k = (col_index)*self.im.size[1]-(300)
                     door = lock_door((j, k))
@@ -75,7 +75,7 @@ class level:
 
 
     # Movimiento del mundo
-    def scroll_world(self):
+    def scroll_world(self): # Límite de velocidad
         if self.world_y_shift > 3 or self.world_x_shift > 3:
             self.world_x_shift=0
             self.world_y_shift=0
@@ -83,7 +83,7 @@ class level:
             self.world_x_shift=0
             self.world_y_shift=0
 
-        self.keys = pygame.key.get_pressed()
+        self.keys = pygame.key.get_pressed() # Obtención de teclas
 
 
 
@@ -177,7 +177,17 @@ class level:
                 self.items.remove(i)
                 self.score += 100
                 self.moneda.play()
+                print(self.score)
         return self.score
+
+    def llave(self):
+
+        for key in self.door_keys:
+            if key.rect.colliderect(self.player):
+                self.door_keys.remove(key)
+
+                for door in self.lock_doors:
+                    self.lock_doors.remove(door)
 
     # Activacion de todas las funciones de esta clase
     def run(self):
@@ -194,3 +204,4 @@ class level:
         self.scroll_world()
         self.colisiones()
         self.puntaje()
+        self.llave()
