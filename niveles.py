@@ -1,11 +1,13 @@
 
 import pygame
 from pygame import sprite
-
+import time
 from sprites import *
 from config import *
 from Mapas_pruebas import *
 from PIL import Image
+pygame.mixer.pre_init(44100, -16, 2, 512)
+pygame.mixer.init()
 pygame.init()
 display_info = pygame.display.Info()
 
@@ -15,16 +17,17 @@ class level:
         self.diplay_surface = surface
         self.set_walls(nivel, wall_type)    # Se llaman surface y wall_type como los argumentos de entrada de set_walls
         self.set_player()
+        self.moneda = pygame.mixer.Sound("Sonidos\Moneda.mp3")
 
         self.score = 0
         self.world_x_shift = 0
         self.world_y_shift = 0
-        
+
     # Se Itera una lista y se colocan sprites en el mapa según la posicion
     # de los caracteres encontrados
     def set_walls(self, layout, wall_type):
         self.im = Image.open(wall_type)
-        
+
         self.walls = pygame.sprite.Group()
         self.items = pygame.sprite.Group()
         self.door_keys = pygame.sprite.Group()
@@ -38,15 +41,15 @@ class level:
                     tile = wall((x,y), wall_type)
                     self.walls.add(tile)
 
-                elif cell == "g": # Deteccion de pixeles negros
+                elif cell == "g": # Deteccion de pixeles verdes
                     j = row_index*self.im.size[0]-(400)
                     k = col_index*self.im.size[1]-(300)
                     item = items((j, k))
-                    
+
                     self.items.add(item)
 
                 elif cell == "r": # Deteccion de pixeles rojos
-                    if len(self.door_keys) < 1: 
+                    if len(self.door_keys) < 1:
                         j = row_index*self.im.size[0]-(400)
                         k = col_index*self.im.size[1]-(300)
                         key = door_key((j, k))
@@ -54,14 +57,14 @@ class level:
                     else:
                         pass
 
-                elif cell == "a": # Deteccion de pixeles negros
+                elif cell == "a": # Deteccion de pixeles azues
                     j = (row_index)*self.im.size[0]-(400)
                     k = (col_index)*self.im.size[1]-(300)
                     door = lock_door((j, k))
                     self.lock_doors.add(door)
 
-                
-        
+
+
     # Posicion del jugador e la pantalla
     def set_player(self):
 
@@ -69,25 +72,24 @@ class level:
         self.player = ply((400, 300))
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.player)
-        
 
-    # Movimiento del mundo y sonido
-    def scroll_world(self):
+
+    # Movimiento del mundo
+    def scroll_world(self): # Límite de velocidad
         if self.world_y_shift > 3 or self.world_x_shift > 3:
             self.world_x_shift=0
             self.world_y_shift=0
-        if self.world_y_shift < 3 or self.world_x_shift < 3:
+        elif self.world_y_shift < 3 or self.world_x_shift < 3:
             self.world_x_shift=0
             self.world_y_shift=0
 
-        self.keys = pygame.key.get_pressed()
-        
-        
-        
+        self.keys = pygame.key.get_pressed() # Obtención de teclas
+
+
+
         # Controles del jugador van aqui
         if self.keys[pygame.K_a] and not self.keys[pygame.K_d] and not self.keys[pygame.K_w] and not self.keys[pygame.K_s]:
-
-            if self.player.rect.x < 360:
+            if self.player.rect.x < 400:
                 self.player.speed =0
                 self.world_x_shift=1
                 if self.keys[pygame.K_LSHIFT]:
@@ -98,9 +100,7 @@ class level:
                     self.player.rect.x -= 3
             return
         elif self.keys[pygame.K_d] and not self.keys[pygame.K_a] and not self.keys[pygame.K_w] and not self.keys[pygame.K_s]:
- 
-            
-            if self.player.rect.x > 440:
+            if self.player.rect.x > 400:
                 self.player.speed =0
                 self.world_x_shift=-1
                 if self.keys[pygame.K_LSHIFT]:
@@ -111,9 +111,8 @@ class level:
                     self.player.rect.x += 3
 
             return
-        elif self.keys[pygame.K_w] and not self.keys[pygame.K_d] and not self.keys[pygame.K_a] and not self.keys[pygame.K_s]:
- 
-            if self.player.rect.y < 260:
+        elif self.keys[pygame.K_w] and not self.keys[pygame.K_a] and not self.keys[pygame.K_d] and not self.keys[pygame.K_s]:
+            if self.player.rect.y < 300:
                 self.player.speed =0
                 self.world_y_shift=1
                 if self.keys[pygame.K_LSHIFT]:
@@ -124,9 +123,8 @@ class level:
                     self.player.rect.y -= 3
 
             return
-        elif self.keys[pygame.K_s] and not self.keys[pygame.K_d] and not self.keys[pygame.K_w] and not self.keys[pygame.K_a]:
-  
-            if self.player.rect.y > 340:
+        elif self.keys[pygame.K_s] and not self.keys[pygame.K_a] and not self.keys[pygame.K_d] and not self.keys[pygame.K_w]:
+            if self.player.rect.y > 300:
                 self.player.speed =0
                 self.world_y_shift=-1
                 if self.keys[pygame.K_LSHIFT]:
@@ -141,7 +139,7 @@ class level:
             self.world_y_shift=0
             return
 
-        
+
     def colisiones(self):
         for i in self.items:
             i.speed = 0
@@ -152,42 +150,48 @@ class level:
 
         for wall in self.walls:
             if wall.rect.colliderect(self.player):
-                
+
                 if self.keys[pygame.K_a]:
                     self.player.speed =0
                     self.world_x_shift -=10
-                    
+
 
                 if self.keys[pygame.K_d]:
                     self.player.speed =0
                     self.world_x_shift +=10
-                    
+
 
                 if self.keys[pygame.K_w]:
                     self.player.speed =0
                     self.world_y_shift -=10
-                    
+
 
                 if self.keys[pygame.K_s]:
                     self.player.speed =0
                     self.world_y_shift +=10
-    
+
     def puntaje(self):
 
-        
         for i in self.items:
-            
             if i.rect.colliderect(self.player):
                 self.items.remove(i)
                 self.score += 100
+                self.moneda.play()
+                print(self.score)
         return self.score
 
+    def llave(self):
 
-        
-        
+        for key in self.door_keys:
+            if key.rect.colliderect(self.player):
+                self.door_keys.remove(key)
+
+                for door in self.lock_doors:
+                    self.lock_doors.remove(door)
+
     # Activacion de todas las funciones de esta clase
     def run(self):
-        
+
         self.walls.update(self.world_x_shift, self.world_y_shift)
         self.walls.draw(self.diplay_surface)
         self.items.update(self.world_x_shift, self.world_y_shift)
@@ -200,8 +204,4 @@ class level:
         self.scroll_world()
         self.colisiones()
         self.puntaje()
-        
-
-
-
-
+        self.llave()
