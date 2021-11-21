@@ -174,6 +174,28 @@ class level:
                     self.player.speed =0
                     self.world_y_shift +=10
 
+        for door in self.lock_doors:
+                if door.rect.colliderect(self.player):
+
+                    if self.keys[pygame.K_a]:
+                        self.player.speed =0
+                        self.world_x_shift -=10
+
+
+                    if self.keys[pygame.K_d]:
+                        self.player.speed =0
+                        self.world_x_shift +=10
+
+
+                    if self.keys[pygame.K_w]:
+                        self.player.speed =0
+                        self.world_y_shift -=10
+
+
+                    if self.keys[pygame.K_s]:
+                        self.player.speed =0
+                        self.world_y_shift +=10
+
     def puntaje(self):
 
         for i in self.items:

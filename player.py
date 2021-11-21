@@ -36,7 +36,7 @@ class ply(pygame.sprite.Sprite):
         self.rect.topleft =[pos[0], pos[1]]
 
     def update(self):
-        self.current_sprite += 0.1
+        self.current_sprite += 0.15
 
         if self.current_sprite >= len(self.front):
             self.current_sprite = 0
