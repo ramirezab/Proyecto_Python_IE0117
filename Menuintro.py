@@ -195,7 +195,7 @@ def menulevels():
         buttons('Nivel X',screen,color_but_lvl,button_lvl10,size_but_lvl,id_button='lvl10')
 
 
-#TODO botones de todos los niveles
+# TODO botones de todos los niveles
 
 #Ejecucion de los diferentes niveles
 def gameloop():

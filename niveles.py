@@ -6,6 +6,8 @@ from sprites import *
 from config import *
 from Mapas_pruebas import *
 from PIL import Image
+from player import *
+
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.mixer.init()
 pygame.init()
@@ -72,6 +74,8 @@ class level:
         self.player = ply((400, 300))
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.player)
+        
+
 
 
     # Movimiento del mundo
@@ -205,3 +209,4 @@ class level:
         self.colisiones()
         self.puntaje()
         self.llave()
+        self.player.update()
