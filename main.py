@@ -21,17 +21,41 @@ screen = pygame.display.set_mode((800,600)) # Tamaño de la pantalla
 clock = pygame.time.Clock()
 
 # Creación de niveles
-level_1 = level(level_map_1, screen, "sprites\wall_1_front.png")
-level_2 = level(level_map_2, screen, "sprites\wall_2_front.png")
-level_3 = level(level_map_3, screen, "sprites\wall_3_front.png")
+level_1 = level(level_map_1, screen, "sprites\Sprite lvl 1.png")
+level_2 = level(level_map_2, screen, "sprites\Sprite lvl 2.png")
+level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png")
+level_4 = level(level_map_4, screen ,"sprites\Sprite lvl 4.png")
+level_5 = level(level_map_5, screen ,"sprites\Sprite lvl 5.png")
+level_6 = level(level_map_6, screen ,"sprites\Sprite lvl 6.png")
+level_7 = level(level_map_7, screen ,"sprites\Sprite lvl 7.png")
+level_8 = level(level_map_8, screen ,"sprites\Sprite lvl 8.png")
+level_9 = level(level_map_9, screen ,"sprites\Sprite lvl 9.png")
+level_10 = level(level_map_10, screen ,"sprites\Sprite lvl 10.png")
 
-# Con esto se puede identificar la musica y pasos de cada nivel
+# Con esto se puede identificar la musica, los pasos de cada nivel
+# Y elegir el nivel mismo
 nivel = level_2
 
-if (nivel == level_2):
+if (nivel == level_1):
     cancion = "Sonidos\Musica playa.mp3"
-elif (nivel == level_1):
+elif(nivel == level_2):
+    cancion = "Sonidos\Musica bosque.mp3"
+elif(nivel == level_3):
+    cancion = "Sonidos\Musica selva.mp3"
+elif(nivel == level_4):
+    cancion = "Sonidos\Musica nieve.mp3"
+elif (nivel == level_5):
     cancion = "Sonidos\Musica mazmorra.mp3"
+elif (nivel == level_6):
+    cancion = "Sonidos\Musica dungeon.mp3"
+elif (nivel == level_7):
+    cancion = "Sonidos\Musica luna.mp3"
+elif (nivel == level_8):
+    cancion = "Sonidos\Musica inferno.mp3"
+elif (nivel == level_9):
+    cancion = "Sonidos\Musica marte.mp3"
+elif (nivel == level_10):
+    cancion = "Sonidos\Musica cielo.mp3"
 
 if (nivel == level_2):
     pasos = "Sonidos\Pasos en arena.mp3"
@@ -61,7 +85,7 @@ while True:
     for event in pygame.event.get():
         # Inicio del modulo de sonido 1
         if event.type == pygame.KEYDOWN:
-            
+
             if (event.key == pygame.K_LEFT or event.key == pygame.K_a):
                 Pasos.play(-1)
             elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d):
@@ -99,9 +123,9 @@ while True:
             sys.exit()
 
     screen.fill('grey')
-    
-    level_1.run()
+
+    level_10.run()
     fps.render(screen, level_1.puntaje())
-    
+
     fps.clock.tick(60)
     pygame.display.flip()
