@@ -20,6 +20,7 @@ class level:
         self.set_walls(nivel, wall_type)    # Se llaman surface y wall_type como los argumentos de entrada de set_walls
         self.set_player()
         self.moneda = pygame.mixer.Sound("Sonidos\Moneda.mp3")
+        self.llaves = pygame.mixer .Sound("Sonidos\Llaves.mp3")
 
         self.score = 0
         self.world_x_shift = 0
@@ -74,7 +75,7 @@ class level:
         self.player = ply((400, 300))
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.player)
-        
+
 
 
 
@@ -189,6 +190,7 @@ class level:
         for key in self.door_keys:
             if key.rect.colliderect(self.player):
                 self.door_keys.remove(key)
+                self.llaves.play()
 
                 for door in self.lock_doors:
                     self.lock_doors.remove(door)
