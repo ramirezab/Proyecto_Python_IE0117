@@ -128,7 +128,7 @@ def intromenu():
 #Mensajes libres en la pantalla
         message('LABYRINTH QUEST',black,-250,size='large')
         message('LABYRINTH QUEST',red,-246,size='large')
-        message('Presionar X para ir hacia atras',white,200,size='medium')
+
         pygame.display.update()
         clock.tick(60)
 
@@ -147,6 +147,7 @@ def options():
                     intromenu()
                     regres = False
 
+            buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
             screen.fill(white)
             message('Aqui iran las opciones',red,-100,size='medium')
             pygame.display.update()
@@ -200,6 +201,8 @@ def menulevels():
         buttons('Nivel VIII',screen,color_but_lvl,button_lvl8,size_but_lvl,id_button='lvl8')
         buttons('Nivel IX',screen,color_but_lvl,button_lvl9,size_but_lvl,id_button='lvl9')
         buttons('Nivel X',screen,color_but_lvl,button_lvl10,size_but_lvl,id_button='lvl10')
+
+
 
 
 #Ejecucion de los diferentes niveles

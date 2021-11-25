@@ -89,13 +89,16 @@ size_button = [200,45]
 button_levels = [300,200]
 color_levels = [plomo,yellow]
 
-button_options = [300,270]
+button_score = [300,270]
+color_score = [plomo,yellow]
+
+button_options = [300,340]
 color_options = [plomo,red]
 
-button_controls = [300,340]
+button_controls = [300,410]
 color_controls = [plomo,green]
 
-button_exit = [300,410]
+button_exit = [300,480]
 color_exit = [plomo,yellow]
 
 button_regress = [625,500]
@@ -134,6 +137,8 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
         if click[0] == 1:
             if id_button == 'niveles':
                 menulevels()
+            elif id_button == 'puntajes':
+                score()
             elif id_button == 'configuracion':
                 options()
             elif id_button == 'detalles':
@@ -303,6 +308,7 @@ def intromenu():
 
         # Botones y sus textos en la pagina menu
         buttons('NIVELES',screen,color_levels,button_levels,size_button,id_button='niveles')
+        buttons('MEJORES PUNTAJES',screen,color_score,button_score,size_button,id_button='puntajes')
         buttons('OPCIONES',screen,color_options,button_options,size_button,id_button='configuracion')
         buttons('CONTROLES',screen,color_controls,button_controls,size_button,id_button='detalles')
         buttons('SALIR',screen,color_exit,button_exit,size_button,id_button='salir')
@@ -354,6 +360,26 @@ def controls():
 
             buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
             message('Aqui iran los controles',red,-100,size='medium')
+            pygame.display.update()
+            clock.tick(60)
+
+def score():
+    scores = True
+
+    while scores:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_x:
+                    intromenu()
+                    regres = False
+
+            screen.fill(white)
+
+            buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
+            message('Aqui iran los mejores puntajes',red,-100,size='medium')
             pygame.display.update()
             clock.tick(60)
 
