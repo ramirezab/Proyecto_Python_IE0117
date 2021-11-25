@@ -74,9 +74,9 @@ elif (nivel == level_10):
 
 #pasos
 if (nivel == level_2):
-    pasos = "Sonidos\Pasos en arena.mp3"
+    pasos = "Sonidos\pasos en arena.mp3"
 elif (nivel == level_1):
-    pasos = "Sonidos\Pasos metal.mp3"
+    pasos = "Sonidos\pasos metal.mp3"
 
 #Fuentes para la letra de menu
 small_font = pygame.font.SysFont('comicsansms',15)
@@ -146,26 +146,126 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
 
             #Para los niveles
             elif id_button == 'lvl1':
-                level_1.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_1.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
 
             elif id_button == 'lvl2':
-                level_2.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_2.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
             elif id_button == 'lvl3':
-                level_3.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_3.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
             elif id_button == 'lvl4':
-                level_4.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_4.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
             elif id_button == 'lvl5':
-                level_5.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_5.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
             elif id_button == 'lvl6':
-                level_6.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_6.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
             elif id_button == 'lvl7':
-                level_7.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_7.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
             elif id_button == 'lvl8':
-                level_8.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_8.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
             elif id_button == 'lvl9':
-                level_9.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_9.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
             elif id_button == 'lvl10':
-                level_10.run()
+                game_state = True
+                while game_state:
+                    screen.fill('grey')
+                    level_10.run()
+                    fps.render(screen, level_1.puntaje())
+                    fps.clock.tick(60)
+                    pygame.display.flip()
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN:
+                            if (event.key == pygame.K_ESCAPE):
+                                game_state = False
 
         button = pygame.draw.rect(surface,state[1],(posit[0],posit[1],size_butt[0],size_butt[1]))
     else:
@@ -307,13 +407,13 @@ while True:
         # Inicio del modulo de sonido 1
         if event.type == pygame.KEYDOWN:
             if (event.key == pygame.K_LEFT or event.key == pygame.K_a):
-                Pasos.play(-1)
+                pasos.play(-1)
             elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d):
-                Pasos.play(-1)
+                pasos.play(-1)
             elif (event.key == pygame.K_DOWN or event.key == pygame.K_s):
-                Pasos.play(-1)
+                pasos.play(-1)
             elif (event.key == pygame.K_UP or event.key == pygame.K_w):
-                Pasos.play(-1)
+                pasos.play(-1)
                 # Con este modulo si se apreta m se pausa la musica
                 # Con n se reanuda donde se dejo pausada
             elif (event.key == pygame.K_m):
@@ -330,20 +430,18 @@ while True:
         # Inicio modulo de sonido 2
         if (event.type == pygame.KEYUP):
             if (event.key == pygame.K_LEFT or event.key == pygame.K_a):
-                Pasos.stop()
+                pasos.stop()
             elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d):
-                Pasos.stop()
+                pasos.stop()
             elif (event.key == pygame.K_DOWN or event.key == pygame.K_s):
-                Pasos.stop()
+                pasos.stop()
             elif (event.key == pygame.K_UP or event.key == pygame.K_w):
-                Pasos.stop()
+                pasos.stop()
         # Fin modulo de sonido 2
 
         if event.type == pygame.QUIT:
             sys.exit()
 
-
-    screen.fill('grey')
 
     intromenu()
     menulevels()
