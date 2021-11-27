@@ -15,6 +15,7 @@ pygame.display.set_caption('Labyrinth quest')
 screen = pygame.display.set_mode((800, 600))
 
 background_menu = pygame.image.load('Fondos\prueba.jpg').convert()
+sprite_menu = pygame.image.load('Personaje\iz1.png').convert()
 
 #Colores
 black = (0,0,0)
@@ -83,6 +84,7 @@ small_font = pygame.font.SysFont('comicsansms',15)
 medium_font = pygame.font.SysFont('comicsansms',30)
 large_font = pygame.font.SysFont('comicsansms',50)
 
+
 #Datos para los botones en menu principal
 size_button = [200,45]
 
@@ -103,6 +105,12 @@ color_exit = [plomo,yellow]
 
 button_regress = [625,500]
 color_regress = [plomo,yellow]
+
+button_back_levels = [300,200]
+color_back_levels = [plomo,yellow]
+
+button_continue = [300,300]
+color_continue = [plomo,yellow]
 
 #Datos para botones de niveles
 size_but_lvl = [100,45]
@@ -137,15 +145,19 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
         if click[0] == 1:
             if id_button == 'niveles':
                 menulevels()
-            elif id_button == 'puntajes':
+            if id_button == 'back_levels':
+                menulevels()
+            if id_button == 'continue':
+                pass
+            if id_button == 'puntajes':
                 score()
-            elif id_button == 'configuracion':
+            if id_button == 'configuracion':
                 options()
-            elif id_button == 'detalles':
+            if id_button == 'detalles':
                 controls()
-            elif id_button == 'regresar':
+            if id_button == 'regresar':
                 intromenu()
-            elif id_button == 'salir':
+            if id_button == 'salir':
                 pygame.quit()
                 quit()
 
@@ -159,9 +171,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            quit()
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
 
             elif id_button == 'lvl2':
                 game_state = True
@@ -172,9 +187,13 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            quit()
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
+
             elif id_button == 'lvl3':
                 game_state = True
                 while game_state:
@@ -184,9 +203,13 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            quit()
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
+
             elif id_button == 'lvl4':
                 game_state = True
                 while game_state:
@@ -197,8 +220,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     pygame.display.flip()
                     for event in pygame.event.get():
                         if event.type == pygame.KEYDOWN:
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
+
             elif id_button == 'lvl5':
                 game_state = True
                 while game_state:
@@ -209,8 +236,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     pygame.display.flip()
                     for event in pygame.event.get():
                         if event.type == pygame.KEYDOWN:
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
+
             elif id_button == 'lvl6':
                 game_state = True
                 while game_state:
@@ -220,9 +251,13 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            quit()
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
+
             elif id_button == 'lvl7':
                 game_state = True
                 while game_state:
@@ -232,9 +267,13 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            quit()
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
+
             elif id_button == 'lvl8':
                 game_state = True
                 while game_state:
@@ -244,9 +283,13 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            quit()
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
+
             elif id_button == 'lvl9':
                 game_state = True
                 while game_state:
@@ -256,9 +299,13 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            quit()
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
+
             elif id_button == 'lvl10':
                 game_state = True
                 while game_state:
@@ -268,9 +315,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            quit()
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
-                                game_state = False
+                                pause()
 
         button = pygame.draw.rect(surface,state[1],(posit[0],posit[1],size_butt[0],size_butt[1]))
     else:
@@ -290,9 +340,9 @@ def obj_text(text,color,size):
     return text_select, text_select.get_rect()
 
 #Funcion de caracteristicas del texto
-def message(msg,color,despla_Y=0,size='small'):
+def message(msg,color,despla_X=0,despla_Y=0,size='small'):
     text_select, textRect = obj_text(msg,color,size)
-    textRect.center = (screen_width/2), (screen_height/2)+despla_Y
+    textRect.center = (screen_width/2)+despla_X, (screen_height/2)+despla_Y
     screen.blit(text_select,textRect)
 
 #Menu principal, primera cara del juego
@@ -305,6 +355,8 @@ def intromenu():
                 quit()
 
         screen.blit(background_menu,[0,0])
+        screen.blit(sprite_menu,[700,300])
+
 
         # Botones y sus textos en la pagina menu
         buttons('NIVELES',screen,color_levels,button_levels,size_button,id_button='niveles')
@@ -314,8 +366,8 @@ def intromenu():
         buttons('SALIR',screen,color_exit,button_exit,size_button,id_button='salir')
 
         #Mensajes libres en la pantalla
-        message('LABYRINTH QUEST',black,-250,size='large')
-        message('LABYRINTH QUEST',red,-246,size='large')
+        message('LABYRINTH QUEST',black,0,-250,size='large')
+        message('LABYRINTH QUEST',red,0,-246,size='large')
 
         pygame.display.update()
         clock.tick(60)
@@ -330,17 +382,11 @@ def options():
                 regres = False
                 pygame.quit()
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_x:
-                    intromenu()
-                    regres = False
-
-            screen.fill(white)
-
-            buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
-            message('Aqui iran las opciones',red,-100,size='medium')
-            pygame.display.update()
-            clock.tick(60)
+        screen.blit(background_menu,[0,0])
+        buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
+        message('Aqui iran las opciones',red,0,-100,size='medium')
+        pygame.display.update()
+        clock.tick(60)
 
 #Dará los controles del juego
 def controls():
@@ -351,18 +397,16 @@ def controls():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_x:
-                    intromenu()
-                    regres = False
 
-            screen.fill(white)
+        screen.fill(white)
+        buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
+        message('Controles',red,0,-250,size='large')
+        message('Teclas para utilizar',red,-200,-175,size='medium')
+        message('Hola',red,0,-100,size='medium')
+        pygame.display.update()
+        clock.tick(60)
 
-            buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
-            message('Aqui iran los controles',red,-100,size='medium')
-            pygame.display.update()
-            clock.tick(60)
-
+#lugar para los mejores puntajes de los laberintos
 def score():
     scores = True
 
@@ -371,17 +415,29 @@ def score():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_x:
-                    intromenu()
-                    regres = False
 
-            screen.fill(white)
+        screen.fill(white)
+        buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
+        message('Aqui iran los mejores puntajes',red,0,-100,size='medium')
+        pygame.display.update()
+        clock.tick(60)
 
-            buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
-            message('Aqui iran los mejores puntajes',red,-100,size='medium')
-            pygame.display.update()
-            clock.tick(60)
+#Menu de pausa dentro del juego
+def pause():
+    regres = True
+
+    while regres:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                regres = False
+
+        screen.fill(white)
+        buttons('VOLVER A NIVELES',screen,color_back_levels,button_back_levels,size_button,id_button='back_levels')
+        buttons('CONTINUAR',screen,color_continue,button_continue,size_button,id_button='continue')
+        message('PAUSA',green,0,-200,size='medium')
+        pygame.display.update()
+        clock.tick(60)
+
 
 #Estaran todos los niveles para escoger
 def menulevels():
@@ -393,13 +449,8 @@ def menulevels():
                 pygame.quit()
                 quit()
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_x:
-                    intromenu()
-                    regres = False
-
-            pygame.display.update()
-            clock.tick(60)
+        pygame.display.update()
+        clock.tick(60)
         screen.blit(background_menu,[0,0])
 
         buttons('Nivel I',screen,color_but_lvl,button_lvl1,size_but_lvl,id_button='lvl1')
@@ -412,7 +463,6 @@ def menulevels():
         buttons('Nivel VIII',screen,color_but_lvl,button_lvl8,size_but_lvl,id_button='lvl8')
         buttons('Nivel IX',screen,color_but_lvl,button_lvl9,size_but_lvl,id_button='lvl9')
         buttons('Nivel X',screen,color_but_lvl,button_lvl10,size_but_lvl,id_button='lvl10')
-
         buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
 
 # Muestra FPS
