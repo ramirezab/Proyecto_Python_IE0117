@@ -7,6 +7,7 @@ from config import *
 from Mapas_pruebas import *
 from PIL import Image
 from player import *
+import json
 
 
 
@@ -17,13 +18,14 @@ display_info = pygame.display.Info()
 
 #Clase nivel
 class level:
-    def __init__(self, nivel, surface, wall_type):
+    def __init__(self, nivel, surface, wall_type, archivo):
         self.diplay_surface = surface
+        self.archivo = archivo
         self.set_walls(nivel, wall_type)    # Se llaman surface y wall_type como los argumentos de entrada de set_walls
         self.set_player()
         self.moneda = pygame.mixer.Sound("Sonidos\Moneda.mp3")
         self.llaves = pygame.mixer .Sound("Sonidos\Llaves.mp3")
-        
+
 
         self.score = 0
         self.world_x_shift = 0
@@ -90,7 +92,7 @@ class level:
 
     # Movimiento del mundo
     def scroll_world(self): # Límite de velocidad
-        
+
 
         self.keys = pygame.key.get_pressed() # Obtención de teclas presionadas
 
@@ -221,17 +223,36 @@ class level:
                 for door in self.lock_doors:
                     self.lock_doors.remove(door)
 
+    def Marcador(self, archivo, puntaje):
+        with open (archivo) as test_file:
+            data = json.load(test_file)
+            if (puntaje > data["uno"]):   # aqui cambia el valor del dato
+                data["uno"] = puntaje
+                with open(archivo, "w") as test_file:
+                    json.dump(data,test_file)
+            elif (puntaje < data["uno"] and puntaje > data["dos"]):
+                data["dos"] = puntaje
+                with open(archivo, "w") as test_file:
+                    json.dump(data,test_file)
+            elif (puntaje < data["dos"] and puntaje > data["tres"]):
+                data["tres"] = puntaje
+                with open(archivo, "w") as test_file:
+                    json.dump(data,test_file)
+            else:
+                None
+
     def GameOver(self):
 
         for block in self.over:
             if block.rect.colliderect(self.player):
-                
+                pygame.mixer.stop()
+                self.Marcador(self.archivo,self.puntaje())
                 return False
         return True
 
     # Activacion de todas las funciones de esta clase
     def run(self):
-        
+
         if self.GameOver():
             self.walls.update(self.world_x_shift, self.world_y_shift)
             self.walls.draw(self.diplay_surface)
@@ -248,7 +269,7 @@ class level:
             self.colisiones()
             self.puntaje()
             self.llave()
-        
+
             self.player.update()
         else:
             return

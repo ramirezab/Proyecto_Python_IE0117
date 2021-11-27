@@ -38,27 +38,31 @@ screen_width = display_info.current_w
 screen_height = display_info.current_h
 
 # Creación de niveles
-level_1 = level(level_map_1, screen, "sprites\Sprite lvl 1.png")
-level_2 = level(level_map_2, screen, "sprites\Sprite lvl 2.png")
-level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png")
-level_4 = level(level_map_4, screen ,"sprites\Sprite lvl 4.png")
-level_5 = level(level_map_5, screen ,"sprites\Sprite lvl 5.png")
-level_6 = level(level_map_6, screen ,"sprites\Sprite lvl 6.png")
-level_7 = level(level_map_7, screen ,"sprites\Sprite lvl 7.png")
-level_8 = level(level_map_8, screen ,"sprites\Sprite lvl 8.png")
-level_9 = level(level_map_9, screen ,"sprites\Sprite lvl 9.png")
-level_10 = level(level_map_10, screen ,"sprites\Sprite lvl 10.png")
-current_level = level(level_map_1, screen, "sprites\Sprite lvl 1.png")
+level_1 = level(level_map_1, screen, "sprites\Sprite lvl 1.png", "Puntajes\Level1.txt")
+level_2 = level(level_map_2, screen, "sprites\Sprite lvl 2.png", "Puntajes\Level2.txt")
+level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png", "Puntajes\Level3.txt")
+level_4 = level(level_map_4, screen ,"sprites\Sprite lvl 4.png", "Puntajes\Level4.txt")
+level_5 = level(level_map_5, screen ,"sprites\Sprite lvl 5.png", "Puntajes\Level5.txt")
+level_6 = level(level_map_6, screen ,"sprites\Sprite lvl 6.png", "Puntajes\Level6.txt")
+level_7 = level(level_map_7, screen ,"sprites\Sprite lvl 7.png", "Puntajes\Level7.txt")
+level_8 = level(level_map_8, screen ,"sprites\Sprite lvl 8.png", "Puntajes\Level8.txt")
+level_9 = level(level_map_9, screen ,"sprites\Sprite lvl 9.png", "Puntajes\Level9.txt")
+level_10 = level(level_map_10, screen ,"sprites\Sprite lvl 10.png", "Puntajes\Level10.txt")
+current_level = level(level_map_1, screen, "sprites\Sprite lvl 1.png", "Puntajes\Level1.txt")
 
 
 
-# Con esto se puede identificar la musica, los pasos de cada nivel
-# Y elegir el nivel mismo
-nivel = level_2
+cancion1 = pygame.mixer.Sound("Sonidos\Musica playa.mp3")
+cancion2 = pygame.mixer.Sound("Sonidos\Musica bosque.mp3")
+cancion3 = pygame.mixer.Sound("Sonidos\Musica selva.mp3")
+cancion4 = pygame.mixer.Sound("Sonidos\Musica nieve.mp3")
+cancion5 = pygame.mixer.Sound("Sonidos\Musica mazmorra.mp3")
+cancion6 = pygame.mixer.Sound("Sonidos\Musica dungeon.mp3")
+cancion7 = pygame.mixer.Sound("Sonidos\Musica luna.mp3")
+cancion8 = pygame.mixer.Sound("Sonidos\Musica inferno.mp3")
+cancion9 = pygame.mixer.Sound("Sonidos\Musica marte.mp3")
+cancion10 = pygame.mixer.Sound("Sonidos\Musica cielo.mp3")
 
-#pasos
-
-pasos = pygame.mixer.Sound("Sonidos\pasos en arena.mp3")
 
 
 
@@ -121,20 +125,22 @@ def msg_button(msg,color,button_X,button_Y,width,height,size='small'):
 def buttons(text,surface,state,posit,size_butt,id_button = None):
     cursor = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
-    
+
 
     #Define si el cursor esta en el boton o no
     if posit[0] + size_butt[0] > cursor[0] > size_butt[0] and posit[0] + size_butt[0] < cursor[0] + size_butt[0] and posit[1] + size_butt[1] > cursor[1] > size_butt[1] and posit[1] + size_butt[1] < cursor[1] + size_butt[1]:
-        
 
 
-        if click[0] == 1:   
+
+        if click[0] == 1:
             if id_button == 'niveles':
                 menulevels()
             if id_button == 'back_levels':
+                pygame.mixer.stop()
                 menulevels()
 
             if id_button == 'continue':
+                pygame.mixer.unpause()
                 return
 
             if id_button == 'puntajes':
@@ -151,13 +157,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
 
             #Para los niveles
             elif id_button == 'lvl1':
-                level_1 = level(level_map_1, screen, "sprites\Sprite lvl 1.png")
+                level_1 = level(level_map_1, screen, "sprites\Sprite lvl 1.png", "Puntajes\Level1.txt")
+                cancion1.play(-1)
                 game_state = True
                 while game_state:
                     if level_1.GameOver():
                         screen.fill('grey')
                         level_1.run()
-                        
+
                         fps.render(screen, level_1.puntaje())
                         fps.clock.tick(60)
                         pygame.display.flip()
@@ -168,11 +175,16 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                             if event.type == pygame.KEYDOWN:
                                 if (event.key == pygame.K_ESCAPE):
                                     pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
                     else:
                         menulevels()
 
             elif id_button == 'lvl2':
-                level_2 = level(level_map_2, screen, "sprites\Sprite lvl 2.png")
+                level_2 = level(level_map_2, screen, "sprites\Sprite lvl 2.png", "Puntajes\Level2.txt")
+                cancion2.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -187,9 +199,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
             elif id_button == 'lvl3':
-                level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png")
+                level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png", "Puntajes\Level3.txt")
+                cancion3.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -204,9 +221,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
             elif id_button == 'lvl4':
-                level_4 = level(level_map_4, screen, "sprites\Sprite lvl 4png")
+                level_4 = level(level_map_4, screen ,"sprites\Sprite lvl 4.png", "Puntajes\Level4.txt")
+                cancion4.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -221,9 +243,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 quit()
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
             elif id_button == 'lvl5':
-                level_5 = level(level_map_5, screen, "sprites\Sprite lvl 5.png")
+                level_5 = level(level_map_5, screen ,"sprites\Sprite lvl 5.png", "Puntajes\Level5.txt")
+                cancion5.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -238,9 +265,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 quit()
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
             elif id_button == 'lvl6':
-                level_6 = level(level_map_6, screen, "sprites\Sprite lvl 6.png")
+                level_6 = level(level_map_6, screen ,"sprites\Sprite lvl 6.png", "Puntajes\Level6.txt")
+                cancion6.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -255,9 +287,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
             elif id_button == 'lvl7':
-                level_7 = level(level_map_7, screen, "sprites\Sprite lvl 7.png")
+                level_7 = level(level_map_7, screen ,"sprites\Sprite lvl 7.png", "Puntajes\Level7.txt")
+                cancion7.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -272,9 +309,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
             elif id_button == 'lvl8':
-                level_8 = level(level_map_8, screen, "sprites\Sprite lvl 8.png")
+                level_8 = level(level_map_8, screen ,"sprites\Sprite lvl 8.png", "Puntajes\Level8.txt")
+                cancion8.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -289,9 +331,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
             elif id_button == 'lvl9':
-                level_9 = level(level_map_9, screen, "sprites\Sprite lvl 9.png")
+                level_9 = level(level_map_9, screen ,"sprites\Sprite lvl 9.png", "Puntajes\Level9.txt")
+                cancion9.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -306,9 +353,14 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
             elif id_button == 'lvl10':
                 level_10 = level(level_map_10, screen, "sprites\Sprite lvl 10.png")
+                cancion10.play(-1)
                 game_state = True
                 while game_state:
                     screen.fill('grey')
@@ -323,6 +375,10 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                         if event.type == pygame.KEYDOWN:
                             if (event.key == pygame.K_ESCAPE):
                                 pause()
+                            elif (event.key == pygame.K_m):
+                                pygame.mixer.pause()
+                            elif (event.key == pygame.K_n):
+                                pygame.mixer.unpause()
 
         button = pygame.draw.rect(surface,state[1],(posit[0],posit[1],size_butt[0],size_butt[1]))
     else:
@@ -427,11 +483,11 @@ def score():
 #Menu de pausa dentro del juego
 def pause():
     regres = True
+    pygame.mixer.pause()
 
     while regres:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                
                 pygame.quit()
                 quit()
 
@@ -441,7 +497,7 @@ def pause():
         message('PAUSA',green,0,-200,size='medium')
         pygame.display.update()
         clock.tick(60)
-        
+
 
 
 #Estaran todos los niveles para escoger
@@ -498,9 +554,9 @@ while True:
                 # Con este modulo si se apreta m se pausa la musica
                 # Con n se reanuda donde se dejo pausada
             elif (event.key == pygame.K_m):
-                pygame.mixer.music.pause()
+                pygame.mixer.pause()
             elif (event.key == pygame.K_n):
-                pygame.mixer.music.unpause()
+                pygame.mixer.unpause()
         # Fin del modulo de sonido
 
         # Con este comando si apretas ESC el juego se cerrará
@@ -525,6 +581,6 @@ while True:
 
 
     intromenu()
-   
- 
+
+
     pygame.display.flip()
