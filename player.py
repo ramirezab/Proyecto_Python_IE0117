@@ -4,7 +4,9 @@ pygame.init()
 # Definicion de la clase player
 class ply(pygame.sprite.Sprite):
     def __init__(self, pos):
+        
         super().__init__()
+        
 
         self.animation = False
 
@@ -65,4 +67,4 @@ class ply(pygame.sprite.Sprite):
 
         else:
             self.image = self.front[0]
-           
+    

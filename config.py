@@ -15,5 +15,3 @@ level_map_8 = mapeo('Laberintos\Level_8.jpg')
 level_map_9 = mapeo('Laberintos\Level_9.jpg')
 level_map_10 = mapeo('Laberintos\Level_10.jpg')
 
-for i in level_map_1:
-    print (i)

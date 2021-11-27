@@ -8,6 +8,8 @@ from Mapas_pruebas import *
 from PIL import Image
 from player import *
 
+
+
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.mixer.init()
 pygame.init()
@@ -21,6 +23,7 @@ class level:
         self.set_player()
         self.moneda = pygame.mixer.Sound("Sonidos\Moneda.mp3")
         self.llaves = pygame.mixer .Sound("Sonidos\Llaves.mp3")
+        
 
         self.score = 0
         self.world_x_shift = 0
@@ -30,7 +33,7 @@ class level:
     # de los caracteres encontrados
     def set_walls(self, layout, wall_type):
         self.im = Image.open(wall_type)
-
+        self.over = pygame.sprite.Group()
         self.walls = pygame.sprite.Group()
         self.items = pygame.sprite.Group()
         self.door_keys = pygame.sprite.Group()
@@ -66,6 +69,12 @@ class level:
                     door = lock_door((j, k))
                     self.lock_doors.add(door)
 
+                elif cell == "y": # Deteccion de pixeles amarillos
+                    j = (row_index)*self.im.size[0]-(400)
+                    k = (col_index)*self.im.size[1]-(300)
+                    finish_block = finish((j, k))
+                    self.over.add(finish_block)
+
 
 
     # Posicion del jugador e la pantalla
@@ -81,14 +90,9 @@ class level:
 
     # Movimiento del mundo
     def scroll_world(self): # Límite de velocidad
-        if self.world_y_shift > 3 or self.world_x_shift > 3:
-            self.world_x_shift=0
-            self.world_y_shift=0
-        elif self.world_y_shift < 3 or self.world_x_shift < 3:
-            self.world_x_shift=0
-            self.world_y_shift=0
+        
 
-        self.keys = pygame.key.get_pressed() # Obtención de teclas
+        self.keys = pygame.key.get_pressed() # Obtención de teclas presionadas
 
 
 
@@ -217,20 +221,34 @@ class level:
                 for door in self.lock_doors:
                     self.lock_doors.remove(door)
 
+    def GameOver(self):
+
+        for block in self.over:
+            if block.rect.colliderect(self.player):
+                
+                return False
+        return True
+
     # Activacion de todas las funciones de esta clase
     def run(self):
-
-        self.walls.update(self.world_x_shift, self.world_y_shift)
-        self.walls.draw(self.diplay_surface)
-        self.items.update(self.world_x_shift, self.world_y_shift)
-        self.items.draw(self.diplay_surface)
-        self.lock_doors.update(self.world_x_shift, self.world_y_shift)
-        self.lock_doors.draw(self.diplay_surface)
-        self.door_keys.update(self.world_x_shift, self.world_y_shift)
-        self.door_keys.draw(self.diplay_surface)
-        self.player_list.draw(self.diplay_surface)
-        self.scroll_world()
-        self.colisiones()
-        self.puntaje()
-        self.llave()
-        self.player.update()
+        
+        if self.GameOver():
+            self.walls.update(self.world_x_shift, self.world_y_shift)
+            self.walls.draw(self.diplay_surface)
+            self.items.update(self.world_x_shift, self.world_y_shift)
+            self.items.draw(self.diplay_surface)
+            self.over.draw(self.diplay_surface)
+            self.over.update(self.world_x_shift, self.world_y_shift)
+            self.lock_doors.update(self.world_x_shift, self.world_y_shift)
+            self.lock_doors.draw(self.diplay_surface)
+            self.door_keys.update(self.world_x_shift, self.world_y_shift)
+            self.door_keys.draw(self.diplay_surface)
+            self.player_list.draw(self.diplay_surface)
+            self.scroll_world()
+            self.colisiones()
+            self.puntaje()
+            self.llave()
+        
+            self.player.update()
+        else:
+            return

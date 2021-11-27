@@ -7,6 +7,7 @@ from pygame import mixer
 
 
 
+
 pygame.init()
 pygame.mixer.init()
 pygame.font.init()
@@ -57,15 +58,12 @@ elif (nivel == level_9):
 elif (nivel == level_10):
     cancion = "Sonidos\Musica cielo.mp3"
 
-if (nivel == level_2):
-    pasos = "Sonidos\Pasos en arena.mp3"
-elif (nivel == level_1):
-    pasos = "Sonidos\Pasos metal.mp3"
 
 
-# music = pygame.mixer.music.load(cancion)
-# pygame.mixer.music.play(-1)
 
+
+
+pasos = "Sonidos\Pasos en arena.mp3"
 Pasos = pygame.mixer.Sound(pasos)
 
 # Muestra FPS

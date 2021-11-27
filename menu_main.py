@@ -7,6 +7,7 @@ from niveles import level
 from pygame import mixer
 from pygame.locals import *
 
+
 #Constantes para el codigo
 clock = pygame.time.Clock()
 pygame.display.set_caption('Labyrinth quest')
@@ -47,37 +48,19 @@ level_7 = level(level_map_7, screen ,"sprites\Sprite lvl 7.png")
 level_8 = level(level_map_8, screen ,"sprites\Sprite lvl 8.png")
 level_9 = level(level_map_9, screen ,"sprites\Sprite lvl 9.png")
 level_10 = level(level_map_10, screen ,"sprites\Sprite lvl 10.png")
+current_level = level(level_map_1, screen, "sprites\Sprite lvl 1.png")
+
+
 
 # Con esto se puede identificar la musica, los pasos de cada nivel
 # Y elegir el nivel mismo
 nivel = level_2
 
-if (nivel == level_1):
-    cancion = "Sonidos\Musica playa.mp3"
-elif(nivel == level_2):
-    cancion = "Sonidos\Musica bosque.mp3"
-elif(nivel == level_3):
-    cancion = "Sonidos\Musica selva.mp3"
-elif(nivel == level_4):
-    cancion = "Sonidos\Musica nieve.mp3"
-elif (nivel == level_5):
-    cancion = "Sonidos\Musica mazmorra.mp3"
-elif (nivel == level_6):
-    cancion = "Sonidos\Musica dungeon.mp3"
-elif (nivel == level_7):
-    cancion = "Sonidos\Musica luna.mp3"
-elif (nivel == level_8):
-    cancion = "Sonidos\Musica inferno.mp3"
-elif (nivel == level_9):
-    cancion = "Sonidos\Musica marte.mp3"
-elif (nivel == level_10):
-    cancion = "Sonidos\Musica cielo.mp3"
-
 #pasos
-if (nivel == level_2):
-    pasos = "Sonidos\pasos en arena.mp3"
-elif (nivel == level_1):
-    pasos = "Sonidos\pasos metal.mp3"
+
+pasos = pygame.mixer.Sound("Sonidos\pasos en arena.mp3")
+
+
 
 #Fuentes para la letra de menu
 small_font = pygame.font.SysFont('comicsansms',15)
@@ -138,17 +121,22 @@ def msg_button(msg,color,button_X,button_Y,width,height,size='small'):
 def buttons(text,surface,state,posit,size_butt,id_button = None):
     cursor = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
+    
 
     #Define si el cursor esta en el boton o no
     if posit[0] + size_butt[0] > cursor[0] > size_butt[0] and posit[0] + size_butt[0] < cursor[0] + size_butt[0] and posit[1] + size_butt[1] > cursor[1] > size_butt[1] and posit[1] + size_butt[1] < cursor[1] + size_butt[1]:
+        
 
-        if click[0] == 1:
+
+        if click[0] == 1:   
             if id_button == 'niveles':
                 menulevels()
             if id_button == 'back_levels':
                 menulevels()
+
             if id_button == 'continue':
-                pass
+                return
+
             if id_button == 'puntajes':
                 score()
             if id_button == 'configuracion':
@@ -163,27 +151,33 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
 
             #Para los niveles
             elif id_button == 'lvl1':
+                level_1 = level(level_map_1, screen, "sprites\Sprite lvl 1.png")
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_1.run()
-                    fps.render(screen, level_1.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                            quit()
-                        if event.type == pygame.KEYDOWN:
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
+                    if level_1.GameOver():
+                        screen.fill('grey')
+                        level_1.run()
+                        
+                        fps.render(screen, level_1.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                            if event.type == pygame.KEYDOWN:
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl2':
+                level_2 = level(level_map_2, screen, "sprites\Sprite lvl 2.png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_2.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_2.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -195,11 +189,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 pause()
 
             elif id_button == 'lvl3':
+                level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_3.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_3.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -211,11 +206,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 pause()
 
             elif id_button == 'lvl4':
+                level_4 = level(level_map_4, screen, "sprites\Sprite lvl 4png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_4.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_4.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -227,11 +223,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 pause()
 
             elif id_button == 'lvl5':
+                level_5 = level(level_map_5, screen, "sprites\Sprite lvl 5.png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_5.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_5.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -243,11 +240,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 pause()
 
             elif id_button == 'lvl6':
+                level_6 = level(level_map_6, screen, "sprites\Sprite lvl 6.png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_6.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_6.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -259,11 +257,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 pause()
 
             elif id_button == 'lvl7':
+                level_7 = level(level_map_7, screen, "sprites\Sprite lvl 7.png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_7.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_7.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -275,11 +274,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 pause()
 
             elif id_button == 'lvl8':
+                level_8 = level(level_map_8, screen, "sprites\Sprite lvl 8.png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_8.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_8.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -291,11 +291,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 pause()
 
             elif id_button == 'lvl9':
+                level_9 = level(level_map_9, screen, "sprites\Sprite lvl 9.png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_9.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_9.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -307,11 +308,12 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                                 pause()
 
             elif id_button == 'lvl10':
+                level_10 = level(level_map_10, screen, "sprites\Sprite lvl 10.png")
                 game_state = True
                 while game_state:
                     screen.fill('grey')
                     level_10.run()
-                    fps.render(screen, level_1.puntaje())
+                    fps.render(screen, level_10.puntaje())
                     fps.clock.tick(60)
                     pygame.display.flip()
                     for event in pygame.event.get():
@@ -429,14 +431,17 @@ def pause():
     while regres:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                regres = False
+                
+                pygame.quit()
+                quit()
 
         screen.fill(white)
         buttons('VOLVER A NIVELES',screen,color_back_levels,button_back_levels,size_button,id_button='back_levels')
-        buttons('CONTINUAR',screen,color_continue,button_continue,size_button,id_button='continue')
+        regres=buttons('CONTINUAR',screen,color_continue,button_continue,size_button,id_button='continue')
         message('PAUSA',green,0,-200,size='medium')
         pygame.display.update()
         clock.tick(60)
+        
 
 
 #Estaran todos los niveles para escoger
@@ -465,8 +470,8 @@ def menulevels():
         buttons('Nivel X',screen,color_but_lvl,button_lvl10,size_but_lvl,id_button='lvl10')
         buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
 
-# Muestra FPS
-class FPS:
+# Muestra el puntaje
+class puntos:
     def __init__ (self, puntaje):
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("Comic Sans MS", 20)
@@ -475,7 +480,7 @@ class FPS:
     def render(self, screen, puntaje):
         self.text = self.font.render(str(puntaje), True, (0,0,0))
         screen.blit(self.text, (10,10))
-fps = FPS(level_1.puntaje())
+fps = puntos(level_1.puntaje())
 
 # Bucle principal del juego
 while True:
@@ -520,9 +525,6 @@ while True:
 
 
     intromenu()
-    menulevels()
-    #level_10.run()
-
-    fps.render(screen, level_10.puntaje())
-    fps.clock.tick(60)
+   
+ 
     pygame.display.flip()
