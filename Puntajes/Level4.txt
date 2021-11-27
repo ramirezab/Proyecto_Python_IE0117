@@ -1,1 +1,1 @@
-{"uno": 1000, "dos": 500, "tres": 100}
+{"uno": 0, "dos": 0, "tres": 0, "nombre1": "none", "nombre2": "none", "nombre3": "none"}
