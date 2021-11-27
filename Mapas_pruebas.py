@@ -38,6 +38,9 @@ def mapeo(image):
 
             elif pix[row, column][0] in range(x) and pix[row, column][1] in range(x) and pix[row, column][2] in range(0,255,1):
                 a.append("a")
+
+            elif pix[row, column][0] == 255 and pix[row, column][1] == 255 and pix[row, column][2] ==0:
+                a.append("y")
             else:
                 a.append(" ")
 
