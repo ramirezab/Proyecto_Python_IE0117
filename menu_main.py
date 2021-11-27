@@ -63,7 +63,7 @@ cancion8 = pygame.mixer.Sound("Sonidos\Musica inferno.mp3")
 cancion9 = pygame.mixer.Sound("Sonidos\Musica marte.mp3")
 cancion10 = pygame.mixer.Sound("Sonidos\Musica cielo.mp3")
 
-
+pasos = pygame.mixer.Sound("Sonidos\Pasos en arena.mp3")
 
 
 #Fuentes para la letra de menu
@@ -187,198 +187,225 @@ def buttons(text,surface,state,posit,size_butt,id_button = None):
                 cancion2.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_2.run()
-                    fps.render(screen, level_2.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                            quit()
-                        if event.type == pygame.KEYDOWN:
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_2.GameOver():
+                        screen.fill('grey')
+                        level_2.run()
+                        fps.render(screen, level_2.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                            if event.type == pygame.KEYDOWN:
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl3':
                 level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png", "Puntajes\Level3.txt")
                 cancion3.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_3.run()
-                    fps.render(screen, level_3.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                            quit()
-                        if event.type == pygame.KEYDOWN:
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_3.GameOver():
+                        screen.fill('grey')
+                        level_3.run()
+                        fps.render(screen, level_3.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                            if event.type == pygame.KEYDOWN:
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl4':
                 level_4 = level(level_map_4, screen ,"sprites\Sprite lvl 4.png", "Puntajes\Level4.txt")
                 cancion4.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_4.run()
-                    fps.render(screen, level_4.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.KEYDOWN:
-                            if event.type == pygame.QUIT:
-                                pygame.quit()
-                                quit()
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_4.GameOver():
+                        screen.fill('grey')
+                        level_4.run()
+                        fps.render(screen, level_4.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.KEYDOWN:
+                                if event.type == pygame.QUIT:
+                                    pygame.quit()
+                                    quit()
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl5':
                 level_5 = level(level_map_5, screen ,"sprites\Sprite lvl 5.png", "Puntajes\Level5.txt")
                 cancion5.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_5.run()
-                    fps.render(screen, level_5.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.KEYDOWN:
-                            if event.type == pygame.QUIT:
-                                pygame.quit()
-                                quit()
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_5.GameOver():
+                        screen.fill('grey')
+                        level_5.run()
+                        fps.render(screen, level_5.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.KEYDOWN:
+                                if event.type == pygame.QUIT:
+                                    pygame.quit()
+                                    quit()
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl6':
                 level_6 = level(level_map_6, screen ,"sprites\Sprite lvl 6.png", "Puntajes\Level6.txt")
                 cancion6.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_6.run()
-                    fps.render(screen, level_6.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                            quit()
-                        if event.type == pygame.KEYDOWN:
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_6.GameOver():
+                        screen.fill('grey')
+                        level_6.run()
+                        fps.render(screen, level_6.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                            if event.type == pygame.KEYDOWN:
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl7':
                 level_7 = level(level_map_7, screen ,"sprites\Sprite lvl 7.png", "Puntajes\Level7.txt")
                 cancion7.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_7.run()
-                    fps.render(screen, level_7.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                            quit()
-                        if event.type == pygame.KEYDOWN:
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_7.GameOver():
+                        screen.fill('grey')
+                        level_7.run()
+                        fps.render(screen, level_7.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                            if event.type == pygame.KEYDOWN:
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl8':
                 level_8 = level(level_map_8, screen ,"sprites\Sprite lvl 8.png", "Puntajes\Level8.txt")
                 cancion8.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_8.run()
-                    fps.render(screen, level_8.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                            quit()
-                        if event.type == pygame.KEYDOWN:
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_8.GameOver():
+                        screen.fill('grey')
+                        level_8.run()
+                        fps.render(screen, level_8.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                            if event.type == pygame.KEYDOWN:
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl9':
                 level_9 = level(level_map_9, screen ,"sprites\Sprite lvl 9.png", "Puntajes\Level9.txt")
                 cancion9.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_9.run()
-                    fps.render(screen, level_9.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                            quit()
-                        if event.type == pygame.KEYDOWN:
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_9.GameOver():
+                        screen.fill('grey')
+                        level_9.run()
+                        fps.render(screen, level_9.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                            if event.type == pygame.KEYDOWN:
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
             elif id_button == 'lvl10':
-                level_10 = level(level_map_10, screen, "sprites\Sprite lvl 10.png")
+                level_10 = level(level_map_10, screen, "sprites\Sprite lvl 10.png", "Puntajes\Level9.txt")
                 cancion10.play(-1)
                 game_state = True
                 while game_state:
-                    screen.fill('grey')
-                    level_10.run()
-                    fps.render(screen, level_10.puntaje())
-                    fps.clock.tick(60)
-                    pygame.display.flip()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                            quit()
-                        if event.type == pygame.KEYDOWN:
-                            if (event.key == pygame.K_ESCAPE):
-                                pause()
-                            elif (event.key == pygame.K_m):
-                                pygame.mixer.pause()
-                            elif (event.key == pygame.K_n):
-                                pygame.mixer.unpause()
+                    if level_10.GameOver():
+                        screen.fill('grey')
+                        level_10.run()
+                        fps.render(screen, level_10.puntaje())
+                        fps.clock.tick(60)
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                            if event.type == pygame.KEYDOWN:
+                                if (event.key == pygame.K_ESCAPE):
+                                    pause()
+                                elif (event.key == pygame.K_m):
+                                    pygame.mixer.pause()
+                                elif (event.key == pygame.K_n):
+                                    pygame.mixer.unpause()
+                    else:
+                        menulevels()
 
         button = pygame.draw.rect(surface,state[1],(posit[0],posit[1],size_butt[0],size_butt[1]))
     else:
@@ -543,17 +570,9 @@ while True:
     for event in pygame.event.get():
         # Inicio del modulo de sonido 1
         if event.type == pygame.KEYDOWN:
-            if (event.key == pygame.K_LEFT or event.key == pygame.K_a):
-                pasos.play(-1)
-            elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d):
-                pasos.play(-1)
-            elif (event.key == pygame.K_DOWN or event.key == pygame.K_s):
-                pasos.play(-1)
-            elif (event.key == pygame.K_UP or event.key == pygame.K_w):
-                pasos.play(-1)
-                # Con este modulo si se apreta m se pausa la musica
-                # Con n se reanuda donde se dejo pausada
-            elif (event.key == pygame.K_m):
+
+            # Con n se reanuda donde se dejo pausada
+            if (event.key == pygame.K_m):
                 pygame.mixer.pause()
             elif (event.key == pygame.K_n):
                 pygame.mixer.unpause()
@@ -564,17 +583,7 @@ while True:
                 pygame.quit()
                 sys.exit()
 
-        # Inicio modulo de sonido 2
-        if (event.type == pygame.KEYUP):
-            if (event.key == pygame.K_LEFT or event.key == pygame.K_a):
-                pasos.stop()
-            elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d):
-                pasos.stop()
-            elif (event.key == pygame.K_DOWN or event.key == pygame.K_s):
-                pasos.stop()
-            elif (event.key == pygame.K_UP or event.key == pygame.K_w):
-                pasos.stop()
-        # Fin modulo de sonido 2
+        
 
         if event.type == pygame.QUIT:
             sys.exit()

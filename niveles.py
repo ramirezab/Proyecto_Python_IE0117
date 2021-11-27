@@ -8,7 +8,7 @@ from Mapas_pruebas import *
 from PIL import Image
 from player import *
 import json
-
+from Ingresar_nombre import *
 
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
@@ -40,6 +40,7 @@ class level:
         self.items = pygame.sprite.Group()
         self.door_keys = pygame.sprite.Group()
         self.lock_doors = pygame.sprite.Group()
+        
         for row_index, row in enumerate(layout):
             for col_index, cell in enumerate(row):
 
@@ -86,6 +87,7 @@ class level:
         self.player = ply((400, 300))
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.player)
+        
 
 
 
@@ -227,19 +229,32 @@ class level:
         with open (archivo) as test_file:
             data = json.load(test_file)
             if (puntaje > data["uno"]):   # aqui cambia el valor del dato
+                self.texto = ingresar_nombre().aceptar()
                 data["uno"] = puntaje
+                data["nombre1"] = self.texto
                 with open(archivo, "w") as test_file:
                     json.dump(data,test_file)
             elif (puntaje < data["uno"] and puntaje > data["dos"]):
+                self.texto = ingresar_nombre().aceptar()
                 data["dos"] = puntaje
+                data["nombre2"] = self.texto
                 with open(archivo, "w") as test_file:
                     json.dump(data,test_file)
             elif (puntaje < data["dos"] and puntaje > data["tres"]):
+                self.texto = ingresar_nombre().aceptar()
                 data["tres"] = puntaje
+                data["nombre3"] = self.texto
                 with open(archivo, "w") as test_file:
                     json.dump(data,test_file)
             else:
                 None
+            
+
+            
+
+
+    
+
 
     def GameOver(self):
 
@@ -247,6 +262,7 @@ class level:
             if block.rect.colliderect(self.player):
                 pygame.mixer.stop()
                 self.Marcador(self.archivo,self.puntaje())
+                
                 return False
         return True
 
