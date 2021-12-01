@@ -1,5 +1,6 @@
 import pygame
 import sys
+import json
 from config import *
 from niveles import level
 from pygame.locals import *
@@ -14,6 +15,7 @@ screen = pygame.display.set_mode((800, 600))
 
 background_menu = pygame.image.load('Fondos\prueba.jpg').convert()
 sprite_menu = pygame.image.load('Personaje\iz1.png').convert()
+sprite_menu.set_colorkey((0, 0, 0))
 
 # Se define un nivel de referenia
 # para inicializar alunas funciones
@@ -28,6 +30,22 @@ blue = (0, 0, 255)
 green = (0, 255, 0)
 plomo = (232, 224, 224)
 yellow = (255, 255, 0)
+orange = (255,128,0)
+lightblue = (0,255,255)
+pink = (255,128,192)
+lightyellow = (255,255,128)
+lightgreen = (179,255,102)
+
+#Colores para los fondos
+colorlvl1 = (198,255,255)
+colorlvl2 = (192,192,129)
+colorlvl3 = (159,255,159)
+colorlvl4 = (213,234,255)
+colorlvl5 = (128,128,128)
+colorlvl6 = (255,255,179)
+colorlvl8 = (255,187,187)
+colorlvl9 = (220,186,186)
+colorlvl10 = (204,204,255)
 
 # Inicializacion
 pygame.init()
@@ -63,19 +81,16 @@ large_font = pygame.font.SysFont('comicsansms', 50)
 size_button = [200, 45]
 
 button_levels = [300, 200]
-color_levels = [plomo, yellow]
+color_levels = [plomo, pink]
 
 button_score = [300, 270]
 color_score = [plomo, yellow]
 
-button_options = [300, 340]
-color_options = [plomo, red]
-
-button_controls = [300, 410]
+button_controls = [300, 340]
 color_controls = [plomo, green]
 
-button_exit = [300, 480]
-color_exit = [plomo, yellow]
+button_exit = [300, 410]
+color_exit = [plomo, lightblue]
 
 button_regress = [625, 500]
 color_regress = [plomo, yellow]
@@ -83,7 +98,7 @@ color_regress = [plomo, yellow]
 button_back_levels = [300, 200]
 color_back_levels = [plomo, yellow]
 
-button_continue = [300, 300]
+button_continue = [300, 270]
 color_continue = [plomo, yellow]
 
 # Datos para botones de niveles
@@ -134,8 +149,6 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
 
             if id_button == 'puntajes':
                 score()
-            if id_button == 'configuracion':
-                options()
             if id_button == 'detalles':
                 controls()
             if id_button == 'regresar':
@@ -153,7 +166,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_1.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl1)
                         level_1.run()
 
                         fps.render(screen, level_1.puntaje())
@@ -183,7 +196,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_2.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl2)
                         level_2.run()
                         fps.render(screen, level_2.puntaje())
                         fps.clock.tick(60)
@@ -210,7 +223,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_3.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl3)
                         level_3.run()
                         fps.render(screen, level_3.puntaje())
                         fps.clock.tick(60)
@@ -237,7 +250,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_4.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl4)
                         level_4.run()
                         fps.render(screen, level_4.puntaje())
                         fps.clock.tick(60)
@@ -264,7 +277,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_5.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl5)
                         level_5.run()
                         fps.render(screen, level_5.puntaje())
                         fps.clock.tick(60)
@@ -291,7 +304,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_6.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl6)
                         level_6.run()
                         fps.render(screen, level_6.puntaje())
                         fps.clock.tick(60)
@@ -345,7 +358,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_8.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl8)
                         level_8.run()
                         fps.render(screen, level_8.puntaje())
                         fps.clock.tick(60)
@@ -372,7 +385,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_9.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl9)
                         level_9.run()
                         fps.render(screen, level_9.puntaje())
                         fps.clock.tick(60)
@@ -399,7 +412,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 game_state = True
                 while game_state:
                     if level_10.GameOver():
-                        screen.fill('grey')
+                        screen.fill(colorlvl10)
                         level_10.run()
                         fps.render(screen, level_10.puntaje())
                         fps.clock.tick(60)
@@ -448,6 +461,150 @@ def message(msg, color, despla_X=0, despla_Y=0, size='small'):
     screen.blit(text_select, textRect)
 
 
+def read_scores():
+    #Funcion para mostrar las mejores puntuaciones
+    with open('Puntajes\Level1.txt') as txt_1:
+        score_lvl1 = json.load(txt_1)
+        message('Level I',lightgreen,-300, -200,'medium')
+        if score_lvl1['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl1["nombre1"],
+                    score_lvl1["uno"]),plomo,-300, -175,'small')
+            if score_lvl1['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl1["nombre2"],
+                        score_lvl1["dos"]),plomo,-300, -155,'small')
+            if score_lvl1['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl1["nombre3"],
+                        score_lvl1["tres"]),plomo,-300, -135,'small')
+        else:
+            message('No hay puntajes aún',plomo,-300, -175,'small')
+    with open('Puntajes\Level2.txt') as txt_2:
+        score_lvl2 = json.load(txt_2)
+        message('Level II',lightgreen,-300, -105,'medium')
+        if score_lvl2['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl2["nombre1"],
+                    score_lvl2["uno"]),plomo,-300, -80,'small')
+            if score_lvl2['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl2["nombre2"],
+                        score_lvl2["dos"]),plomo,-300, -60,'small')
+            if score_lvl2['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl2["nombre3"],
+                        score_lvl2["tres"]),plomo,-300, -40,'small')
+        else:
+            message('No hay puntajes aún',plomo,-300, -80,'small')
+    with open('Puntajes\Level3.txt') as txt_3:
+        score_lvl3 = json.load(txt_3)
+        message('Level III',lightgreen,-300, -10,'medium')
+        if score_lvl3['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl3["nombre1"],
+                    score_lvl3["uno"]),plomo,-300, 15,'small')
+            if score_lvl3['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl3["nombre2"],
+                        score_lvl3["dos"]),plomo,-300, 35,'small')
+            if score_lvl3['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl3["nombre3"],
+                        score_lvl3["tres"]),plomo,-300, 55,'small')
+        else:
+            message('No hay puntajes aún',plomo,-300, 15,'small')
+    with open('Puntajes\Level4.txt') as txt_4:
+        score_lvl4 = json.load(txt_4)
+        message('Level IV',lightgreen,-300, 85,'medium')
+        if score_lvl4['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl4["nombre1"],
+                    score_lvl4["uno"]),plomo,-300, 110,'small')
+            if score_lvl4['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl4["nombre2"],
+                        score_lvl4["dos"]),plomo,-300, 130,'small')
+            if score_lvl4['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl4["nombre3"],
+                        score_lvl4["tres"]),plomo,-300, 150,'small')
+        else:
+            message('No hay puntajes aún',plomo,-300, 110,'small')
+    with open('Puntajes\Level5.txt') as txt_5:
+        score_lvl5 = json.load(txt_5)
+        message('Level V',lightgreen,0, -200,'medium')
+        if score_lvl5['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl5["nombre1"],
+                    score_lvl5["uno"]),plomo,0, -175,'small')
+            if score_lvl5['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl5["nombre2"],
+                        score_lvl5["dos"]),plomo,0, -155,'small')
+            if score_lvl5['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl5["nombre3"],
+                        score_lvl5["tres"]),plomo,0, -135,'small')
+        else:
+            message('No hay puntajes aún',plomo,0, -175,'small')
+    with open('Puntajes\Level6.txt') as txt_6:
+        score_lvl6 = json.load(txt_6)
+        message('Level VI',lightgreen,0, -105,'medium')
+        if score_lvl6['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl6["nombre1"],
+                    score_lvl6["uno"]),plomo,0, -80,'small')
+            if score_lvl6['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl6["nombre2"],
+                        score_lvl6["dos"]),plomo,0, -60,'small')
+            if score_lvl6['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl6["nombre3"],
+                        score_lvl6["tres"]),plomo,0, -40,'small')
+        else:
+            message('No hay puntajes aún',plomo,0, -80,'small')
+    with open('Puntajes\Level7.txt') as txt_7:
+        score_lvl7 = json.load(txt_7)
+        message('Level VII',lightgreen,0, -10,'medium')
+        if score_lvl7['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl7["nombre1"],
+                    score_lvl7["uno"]),plomo,0, 15,'small')
+            if score_lvl7['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl7["nombre2"],
+                        score_lvl7["dos"]),plomo,0, 35,'small')
+            if score_lvl7['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl7["nombre3"],
+                        score_lvl7["tres"]),plomo,0, 55,'small')
+        else:
+            message('No hay puntajes aún',plomo,0, 15,'small')
+    with open('Puntajes\Level8.txt') as txt_8:
+        score_lvl8 = json.load(txt_8)
+        message('Level VIII',lightgreen,0, 85,'medium')
+        if score_lvl8['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl8["nombre1"],
+                    score_lvl8["uno"]),plomo,0, 110,'small')
+            if score_lvl8['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl8["nombre2"],
+                        score_lvl8["dos"]),plomo,0, 130,'small')
+            if score_lvl8['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl8["nombre3"],
+                        score_lvl8["tres"]),plomo,0, 150,'small')
+        else:
+            message('No hay puntajes aún',plomo,0, 110,'small')
+    with open('Puntajes\Level9.txt') as txt_9:
+        score_lvl9 = json.load(txt_9)
+        message('Level IX',lightgreen,300, -200,'medium')
+        if score_lvl9['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl9["nombre1"],
+                    score_lvl9["uno"]),plomo,300, -175,'small')
+            if score_lvl9['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl9["nombre2"],
+                        score_lvl9["dos"]),plomo,300, -155,'small')
+            if score_lvl9['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl9["nombre3"],
+                        score_lvl9["tres"]),plomo,300, -135,'small')
+        else:
+            message('No hay puntajes aún',plomo,300, -175,'small')
+    with open('Puntajes\Level10.txt') as txt_10:
+        score_lvl10 = json.load(txt_10)
+        message('Level X',lightgreen,300, -105,'medium')
+        if score_lvl10['nombre1'] != 'none':
+            message('1° {} {}'.format(score_lvl10["nombre1"],
+                    score_lvl10["uno"]),plomo,300, -80,'small')
+            if score_lvl10['nombre2'] != 'none':
+                message('2° {} {}'.format(score_lvl10["nombre2"],
+                        score_lvl10["dos"]),plomo,300, -60,'small')
+            if score_lvl10['nombre3'] != 'none':
+                message('3° {} {}'.format(score_lvl10["nombre3"],
+                        score_lvl10["tres"]),plomo,300, -40,'small')
+        else:
+            message('No hay puntajes aún',plomo,300, -80,'small')
+
+
 def intromenu():
     # Menu principal, primera cara del juego
     introgame = True
@@ -458,7 +615,7 @@ def intromenu():
                 quit()
 
         screen.blit(background_menu, [0, 0])
-        screen.blit(sprite_menu, [700, 300])
+        screen.blit(sprite_menu, [700, 325])
 
         # Botones y sus textos en la pagina menu
         buttons('NIVELES', screen, color_levels, button_levels,
@@ -466,9 +623,6 @@ def intromenu():
 
         buttons('MEJORES PUNTAJES', screen, color_score, button_score,
                 size_button, id_button='puntajes')
-
-        buttons('OPCIONES', screen, color_options, button_options,
-                size_button, id_button='configuracion')
 
         buttons('CONTROLES', screen, color_controls, button_controls,
                 size_button, id_button='detalles')
@@ -484,23 +638,6 @@ def intromenu():
         clock.tick(60)
 
 
-def options():
-    # Para principalmente el volumen, si se puede ajuste de tamaño de pantalla
-    regres = True
-
-    while regres:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                regres = False
-                pygame.quit()
-
-        screen.blit(background_menu,[0,0])
-        buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
-        message('Aqui iran las opciones',red,0,-100,size='medium')
-        pygame.display.update()
-        clock.tick(60)
-
-
 def controls():
     # Pantalla para controles del jugador
     regres = True
@@ -511,13 +648,22 @@ def controls():
                 pygame.quit()
                 quit()
 
-        screen.fill(white)
-        buttons('ATRAS', screen, color_regress, button_regress,
-                size_but_lvl, id_button='regresar')
+        screen.blit(background_menu,[0,0])
+        buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,
+                id_button='regresar')
 
-        message('Controles', red,0,-250,size='large')
-        message('Teclas para utilizar',red,-200,-175,size='medium')
-        message('Hola',red,0,-100,size='medium')
+        message('Controles',pink,0, -250,size='large')
+        message('Movimiento:',plomo,-250, -175,size='medium')
+        message('W: Hacia arriba',lightblue,-225, -130,size='medium')
+        message('A: Hacia abajo',lightblue,-230, -95,size='medium')
+        message('S: Hacia la izquierda',lightblue,-190, -60,size='medium')
+        message('D: Hacia la derecha',lightblue,-195, -25,size='medium')
+        message('SHIFT: Avanzar con más velocidad',lightblue,-90, 5,size='medium')
+        message('Otros:',plomo,-290, 50,size='medium')
+        message('M: Quitar musica',lightblue,-215, 95,size='medium')
+        message('N: Poner musica',lightblue,-220, 130,size='medium')
+        message('Esc: Menú de pausa',lightblue,-195, 165,size='medium')
+
         pygame.display.update()
         clock.tick(60)
 
@@ -531,9 +677,12 @@ def score():
                 pygame.quit()
                 quit()
 
-        screen.fill(white)
-        buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,id_button='regresar')
-        message('Aqui iran los mejores puntajes',red,0,-100,size='medium')
+        screen.blit(background_menu,[0, 0])
+        buttons('ATRAS',screen,color_regress,button_regress,size_but_lvl,
+                id_button='regresar')
+        message('Mejores puntajes',lightyellow,0, -250,size='large')
+        read_scores()
+
         pygame.display.update()
         clock.tick(60)
 
@@ -549,7 +698,7 @@ def pause():
                 pygame.quit()
                 quit()
 
-        screen.fill(white)
+        screen.blit(background_menu,[0, 0])
         buttons('VOLVER A NIVELES', screen, color_back_levels,
                 button_back_levels, size_button, id_button='back_levels')
 
@@ -574,7 +723,9 @@ def menulevels():
 
         pygame.display.update()
         clock.tick(60)
-        screen.blit(background_menu,[0,0])
+        screen.blit(background_menu,[0, 0])
+
+        message('Niveles',pink,0, -250,size='large')
 
         buttons('Nivel I', screen, color_but_lvl, button_lvl1,
                 size_but_lvl, id_button='lvl1')
