@@ -234,20 +234,23 @@ class level:
                 data["nombre1"] = self.texto
                 with open(archivo, "w") as test_file:
                     json.dump(data,test_file)
+                return
             elif (puntaje < data["uno"] and puntaje > data["dos"]):
                 self.texto = ingresar_nombre().aceptar()
                 data["dos"] = puntaje
                 data["nombre2"] = self.texto
                 with open(archivo, "w") as test_file:
                     json.dump(data,test_file)
+                return
             elif (puntaje < data["dos"] and puntaje > data["tres"]):
                 self.texto = ingresar_nombre().aceptar()
                 data["tres"] = puntaje
                 data["nombre3"] = self.texto
                 with open(archivo, "w") as test_file:
                     json.dump(data,test_file)
+                return
             else:
-                None
+                return
             
 
             

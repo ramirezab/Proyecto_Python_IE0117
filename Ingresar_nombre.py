@@ -29,4 +29,3 @@ class ingresar_nombre():
     self.root.quit()
     return n              
 
-

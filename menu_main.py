@@ -38,17 +38,17 @@ screen_width = display_info.current_w
 screen_height = display_info.current_h
 
 # Creación de niveles
-level_1 = level(level_map_1, screen, "sprites\Sprite lvl 1.png", "Puntajes\Level1.txt")
-level_2 = level(level_map_2, screen, "sprites\Sprite lvl 2.png", "Puntajes\Level2.txt")
-level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png", "Puntajes\Level3.txt")
-level_4 = level(level_map_4, screen ,"sprites\Sprite lvl 4.png", "Puntajes\Level4.txt")
-level_5 = level(level_map_5, screen ,"sprites\Sprite lvl 5.png", "Puntajes\Level5.txt")
-level_6 = level(level_map_6, screen ,"sprites\Sprite lvl 6.png", "Puntajes\Level6.txt")
-level_7 = level(level_map_7, screen ,"sprites\Sprite lvl 7.png", "Puntajes\Level7.txt")
-level_8 = level(level_map_8, screen ,"sprites\Sprite lvl 8.png", "Puntajes\Level8.txt")
-level_9 = level(level_map_9, screen ,"sprites\Sprite lvl 9.png", "Puntajes\Level9.txt")
-level_10 = level(level_map_10, screen ,"sprites\Sprite lvl 10.png", "Puntajes\Level10.txt")
-current_level = level(level_map_1, screen, "sprites\Sprite lvl 1.png", "Puntajes\Level1.txt")
+# level_1 = level(level_map_1, screen, "sprites\Sprite lvl 1.png", "Puntajes\Level1.txt")
+# level_2 = level(level_map_2, screen, "sprites\Sprite lvl 2.png", "Puntajes\Level2.txt")
+# level_3 = level(level_map_3, screen, "sprites\Sprite lvl 3.png", "Puntajes\Level3.txt")
+# level_4 = level(level_map_4, screen ,"sprites\Sprite lvl 4.png", "Puntajes\Level4.txt")
+# level_5 = level(level_map_5, screen ,"sprites\Sprite lvl 5.png", "Puntajes\Level5.txt")
+# level_6 = level(level_map_6, screen ,"sprites\Sprite lvl 6.png", "Puntajes\Level6.txt")
+# level_7 = level(level_map_7, screen ,"sprites\Sprite lvl 7.png", "Puntajes\Level7.txt")
+# level_8 = level(level_map_8, screen ,"sprites\Sprite lvl 8.png", "Puntajes\Level8.txt")
+# level_9 = level(level_map_9, screen ,"sprites\Sprite lvl 9.png", "Puntajes\Level9.txt")
+# level_10 = level(level_map_10, screen ,"sprites\Sprite lvl 10.png", "Puntajes\Level10.txt")
+# current_level = level(level_map_1, screen, "sprites\Sprite lvl 1.png", "Puntajes\Level1.txt")
 
 
 
@@ -517,7 +517,7 @@ def pause():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-
+        
         screen.fill(white)
         buttons('VOLVER A NIVELES',screen,color_back_levels,button_back_levels,size_button,id_button='back_levels')
         regres=buttons('CONTINUAR',screen,color_continue,button_continue,size_button,id_button='continue')
@@ -555,15 +555,16 @@ def menulevels():
 
 # Muestra el puntaje
 class puntos:
-    def __init__ (self, puntaje):
+    def __init__ (self):
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("Comic Sans MS", 20)
-        self.text = self.font.render(str(puntaje), True, (0,0,0))
+        self.text = self.font.render(str(self.puntaje), True, (0,0,0))
         screen.blit(self.text, (10,10))
     def render(self, screen, puntaje):
+        self.puntaje = puntaje
         self.text = self.font.render(str(puntaje), True, (0,0,0))
         screen.blit(self.text, (10,10))
-fps = puntos(level_1.puntaje())
+fps = puntos()
 
 # Bucle principal del juego
 while True:
