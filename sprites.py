@@ -27,7 +27,7 @@ class items(pygame.sprite.Sprite):
         super().__init__()
 
         # Carga de la imagen correspondiente al spirte
-        self.image = pygame.image.load("sprites\coin.png").convert()
+        self.image = pygame.image.load("sprites/coin.png").convert()
         self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect(topleft=pos)
 
@@ -44,7 +44,7 @@ class lock_door(pygame.sprite.Sprite):
         super().__init__()
 
         # Carga de la imagen correspondiente al spirte
-        self.image = pygame.image.load("sprites\lock_door.png").convert()
+        self.image = pygame.image.load("sprites/lock_door.png").convert()
         self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect(topleft=pos)
 
@@ -61,7 +61,7 @@ class door_key(pygame.sprite.Sprite):
         super().__init__()
 
         # Carga de la imagen correspondiente al spirte
-        self.image = pygame.image.load("sprites\key.png").convert()
+        self.image = pygame.image.load("sprites/key.png").convert()
         self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect(topleft=pos)
 
@@ -78,7 +78,7 @@ class finish(pygame.sprite.Sprite):
         super().__init__()
 
         # Carga de la imagen correspondiente al spirte
-        self.image = pygame.image.load("sprites\lag.png").convert()
+        self.image = pygame.image.load("sprites/lag.png").convert()
         self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect(topleft=pos)
 

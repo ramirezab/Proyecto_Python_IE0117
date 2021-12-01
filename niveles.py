@@ -1,11 +1,11 @@
 
 import pygame
+import json
 from sprites import *
 from config import *
 from Mapas_pruebas import *
 from PIL import Image
 from player import *
-import json
 from Ingresar_nombre import *
 
 
@@ -27,8 +27,8 @@ class level:
         self.set_player()
 
         # Se cargan los archivos de audio
-        self.moneda = pygame.mixer.Sound("Sonidos\Moneda.mp3")
-        self.llaves = pygame.mixer .Sound("Sonidos\Llaves.mp3")
+        self.moneda = pygame.mixer.Sound("Sonidos/Moneda.mp3")
+        self.llaves = pygame.mixer .Sound("Sonidos/Llaves.mp3")
 
         # Definición de variables de clase para
         # puntaje y movimiento de sprites
@@ -228,9 +228,9 @@ class level:
                 for door in self.lock_doors:
                     # Se eliminan las puertas cerradas
                     self.lock_doors.remove(door)
-   # esta funcion guarda los puntajes y los nombres de quienes
-   # los hicieron.
+
     def Marcador(self, archivo, puntaje):
+        # Funcion guarda los puntajes y los nombres de quienes los hicieron
         with open(archivo) as test_file:
             data = json.load(test_file)
             if (puntaje > data["uno"]):   # aqui cambia el valor del dato

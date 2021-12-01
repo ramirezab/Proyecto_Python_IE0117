@@ -1,1 +1,1 @@
-{"uno": 0, "dos": 0, "tres": 0, "nombre1": "none", "nombre2": "none", "nombre3": "none"}
+{"uno": 2500, "dos": 2000, "tres": 0, "nombre1": "Valeria", "nombre2": "Geovanny", "nombre3": "none"}
