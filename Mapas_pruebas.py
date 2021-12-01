@@ -3,50 +3,65 @@ import pygame
 
 pygame.init()
 
+
 def mapeo(image):
 
-    screen_size= pygame.display.Info()
     """
     Crea una lista donde cada entrada es una cadena de caracteres
     que representa los pixeles negros de la imagen con la letra b
     """
 
-    im = Image.open(image).convert() # Carga la imagen
+    im = Image.open(image).convert()  # Carga la imagen
 
     # Cambia el tamaño de la imagen para que se ajuste a la
     # pantalla del juego
-    im2 = im.resize((800,600))
+    im2 = im.resize((800, 600))
 
     # Crea una lista con todos los pixeles en RGB de a imagen
     pix = im2.load()
-    mapa=[] # Lista que guarda la posicion de los ixeles relevantes de la imagen
 
-    x = 20 # Variacion aceptable de pixeles negres
-    for row in range(0,im2.size[0],5): # Revision de filas de pixeles de la imagen
-        a=[]
-        for column in range(0,im2.size[1],5): # Revision de columnas de pixeles de la imagen
+    # Lista que guarda la posicion de los ixeles relevantes de la imagen
+    mapa = []
+
+    x = 20  # Variacion aceptable de pixeles negres
+
+    # Revision de filas de pixeles de la imagen
+    for row in range(0, im2.size[0], 5):
+        a = []
+
+        # Revision de columnas de pixeles de la imagen
+        for column in range(0, im2.size[1], 5):
 
             # Comprobación de rango aceptable de tonos de negro
-            if pix[row, column][0] in range(x) and pix[row, column][1] in range(x) and pix[row, column][2] in range(x):
+            if (pix[row, column][0] in range(x)
+               and pix[row, column][1] in range(x)
+               and pix[row, column][2] in range(x)):
                 a.append("b")
 
-            elif pix[row, column][0] in range(x) and pix[row, column][1] in range(255-x,255,1) and pix[row, column][2] in range(x):
+            elif (pix[row, column][0] in range(x)
+                  and pix[row, column][1] in range(255-x, 255, 1)
+                  and pix[row, column][2] in range(x)):
                 a.append("g")
 
-            elif pix[row, column][0] in range(255-x,255,1) and pix[row, column][1] in range(x) and pix[row, column][2] in range(x):
+            elif (pix[row, column][0] in range(255-x, 255, 1)
+                  and pix[row, column][1] in range(x)
+                  and pix[row, column][2] in range(x)):
                 a.append("r")
 
-            elif pix[row, column][0] in range(x) and pix[row, column][1] in range(x) and pix[row, column][2] in range(0,255,1):
+            elif (pix[row, column][0] in range(x)
+                  and pix[row, column][1] in range(x)
+                  and pix[row, column][2] in range(0, 255, 1)):
                 a.append("a")
 
-            elif pix[row, column][0] == 255 and pix[row, column][1] == 255 and pix[row, column][2] ==0:
+            elif (pix[row, column][0] == 255
+                  and pix[row, column][1] == 255
+                  and pix[row, column][2] == 0):
                 a.append("y")
             else:
                 a.append(" ")
 
-
-
-        b = "".join(a) # Definicion de str ue contiene 1 fila de pixeles de la imagen
+        # Definicion de str que contiene 1 fila de pixeles de la imagen
+        b = "".join(a)  
         mapa.append(b)
 
     return mapa
