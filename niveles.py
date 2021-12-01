@@ -228,7 +228,8 @@ class level:
                 for door in self.lock_doors:
                     # Se eliminan las puertas cerradas
                     self.lock_doors.remove(door)
-
+   # esta funcion guarda los puntajes y los nombres de quienes
+   # los hicieron.
     def Marcador(self, archivo, puntaje):
         with open(archivo) as test_file:
             data = json.load(test_file)

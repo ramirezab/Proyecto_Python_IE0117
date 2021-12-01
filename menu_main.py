@@ -39,6 +39,7 @@ display_info = pygame.display.Info()
 screen_width = display_info.current_w
 screen_height = display_info.current_h
 
+# Declaracion de las canciones de algunos niveles
 cancion1 = pygame.mixer.Sound("Sonidos\Musica playa.mp3")
 cancion2 = pygame.mixer.Sound("Sonidos\Musica bosque.mp3")
 cancion3 = pygame.mixer.Sound("Sonidos\Musica selva.mp3")
@@ -50,7 +51,6 @@ cancion8 = pygame.mixer.Sound("Sonidos\Musica inferno.mp3")
 cancion9 = pygame.mixer.Sound("Sonidos\Musica marte.mp3")
 cancion10 = pygame.mixer.Sound("Sonidos\Musica cielo.mp3")
 
-pasos = pygame.mixer.Sound("Sonidos\Pasos en arena.mp3")
 
 
 # Fuentes para la letra de menu
@@ -125,11 +125,11 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
             if id_button == 'niveles':
                 menulevels()
             if id_button == 'back_levels':
-                pygame.mixer.stop()
+                pygame.mixer.stop() # Detiene la cancion al salir del lvl
                 menulevels()
 
             if id_button == 'continue':
-                pygame.mixer.unpause()
+                pygame.mixer.unpause() # Reanuda la cancion al volver al lvl
                 return
 
             if id_button == 'puntajes':
@@ -149,7 +149,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 level_1 = level(level_map_1, screen,
                                 "sprites\Sprite lvl 1.png",
                                 "Puntajes\Level1.txt")
-                cancion1.play(-1)
+                cancion1.play(-1) # se reproduce la cancion del lvl
                 game_state = True
                 while game_state:
                     if level_1.GameOver():
@@ -166,8 +166,10 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                             if event.type == pygame.KEYDOWN:
                                 if (event.key == pygame.K_ESCAPE):
                                     pause()
+                                # pausa la música con m
                                 elif (event.key == pygame.K_m):
                                     pygame.mixer.pause()
+                                # reanuda la música con n
                                 elif (event.key == pygame.K_n):
                                     pygame.mixer.unpause()
                     else:
@@ -539,7 +541,7 @@ def score():
 def pause():
     # Menu de pausa dentro del juego
     regres = True
-    pygame.mixer.pause()
+    pygame.mixer.pause() # Detiene la cancion al entrar en pausa
 
     while regres:
         for event in pygame.event.get():
@@ -629,12 +631,6 @@ while True:
         # Inicio del modulo de sonido 1
         if event.type == pygame.KEYDOWN:
 
-            # Con n se reanuda donde se dejo pausada
-            if (event.key == pygame.K_m):
-                pygame.mixer.pause()
-            elif (event.key == pygame.K_n):
-                pygame.mixer.unpause()
-        # Fin del modulo de sonido
 
         # Con este comando si apretas ESC el juego se cerrará
             if event.key == pygame.K_ESCAPE:
