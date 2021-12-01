@@ -5,7 +5,7 @@ Integrantes: Alexander Miranda Pineda C04873
              Bryan Ramirez Ampié B35581
              José David Díaz Pérez C02638
 
-Tema escogido: Juego de laberintos "Maze Quest"
+Tema escogido: Juego de laberintos "labyrinth Quest"
 
 Descripción del proyecto: "Maze quest" es un juego en donde se debe superar
 un laberinto y en el camino se pueden encontrar tanto como monedas que aumenten
