@@ -51,7 +51,6 @@ cancion8 = pygame.mixer.Sound("Sonidos\Musica inferno.mp3")
 cancion9 = pygame.mixer.Sound("Sonidos\Musica marte.mp3")
 cancion10 = pygame.mixer.Sound("Sonidos\Musica cielo.mp3")
 
-pasos = pygame.mixer.Sound("Sonidos\Pasos en arena.mp3")
 
 
 # Fuentes para la letra de menu
@@ -150,7 +149,7 @@ def buttons(text, surface, state, posit, size_butt, id_button=None):
                 level_1 = level(level_map_1, screen,
                                 "sprites\Sprite lvl 1.png",
                                 "Puntajes\Level1.txt")
-                cancion1.play(-1)
+                cancion1.play(-1) # se reproduce la cancion del lvl
                 game_state = True
                 while game_state:
                     if level_1.GameOver():
