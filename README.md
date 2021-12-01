@@ -7,7 +7,7 @@ Integrantes: Alexander Miranda Pineda C04873
 
 Tema escogido: Juego de laberintos "labyrinth Quest"
 
-Descripción del proyecto: "Maze quest" es un juego en donde se debe superar
+Descripción del proyecto: "labyrinth quest" es un juego en donde se debe superar
 un laberinto y en el camino se pueden encontrar tanto como monedas que aumenten
 la puntuación al igual que la llave que termina el nivel, hay un total de 10
 niveles en el juego con diversa música y entornos.
